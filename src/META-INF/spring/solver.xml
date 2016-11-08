@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:svg="http://www.w3.org/2000/svg"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Econet Modeler ================================================================================-->
+
+	<bean id="SOLVER" class="pl.edu.asim.gui.GuiNode">
+		<property name="name" value="Econet Modeler" />
+		<property name="nameLabel" value="Name" />
+		<property name="nameBlocked" value="true" />
+		<property name="type" value="SOLVER" />
+		<property name="propertyMap"> 
+		<map>
+			<entry key="author" value-ref="authorE" />
+			<entry key="description" value-ref="descriptionE" />
+			<entry key="workspace" value-ref="workspace" />
+			<entry key="width" value-ref="svg_width" />
+			<entry key="height" value-ref="svg_height" />
+		</map>
+		</property>
+  		<property name="submodelMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD" value-ref="addNetwork" />
+  		    <entry key="IMPORT" value-ref="importNetwork" />
+  		    <entry key="Separator_1" value-ref="separator" />
+  		    <entry key="Memory" value-ref="memoryMonitor" />
+  		    <entry key="XMLExport" value-ref="xmlExportAction" />
+  		    <entry key="XMLImport" value-ref="xmlImportAction" />
+  		    <entry key="Separator_2" value-ref="separator" />
+  		    <entry key="Exit" value-ref="modelerExitAction" />
+		</map>
+		</property>  
+	</bean>
+
+	<bean id="addNetwork" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add network" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="WIRED_NETWORK" />
+	</bean>
+	
+	<bean id="importNetwork" class="pl.edu.asim.gui.actions.ImportEconetNetwork">
+		<constructor-arg value="Import network" />
+		<constructor-arg ref="OPEN_Icon" />
+	</bean>
+
+	<bean id="WIRED_NETWORK" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="WIRED_NETWORK" />
+		<property name="name" value="Network" />
+  		<property name="submodelMap"> 
+ 		<map>
+			<entry key="ROUTERS" value-ref="wiredNodeCategory" />	
+			<entry key="LINKS" value-ref="linkCategory" />	
+			<entry key="DEMANDS" value-ref="demandCategory" />	
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="SOLVE" value-ref="solveNetwork" />
+  		    <entry key="SOLVE3" value-ref="solveNetworkStep" />
+  		    <entry key="SOLVE2" value-ref="solveNetworkRelaxation" />
+  		    <entry key="Separator_1" value-ref="separator" />
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="description" value-ref="descriptionE" />
+			<entry key="overbooking" value-ref="overbooking" />
+			<entry key="tUnit" value-ref="tUnit" />
+			<entry key="pUnit" value-ref="pUnit" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+	</bean>
+
+	<bean id="solveNetwork" class="pl.edu.asim.gui.actions.SolveEconetNetwork">
+		<constructor-arg value="Solve network: BB" />
+		<constructor-arg ref="PLAY_Icon" />
+		<constructor-arg value="-f" />
+	</bean>
+	<bean id="solveNetworkStep" class="pl.edu.asim.gui.actions.SolveEconetNetwork">
+		<constructor-arg value="Solve network: BS - Step" />
+		<constructor-arg ref="PLAY_Icon" />
+		<constructor-arg value="-fs" />
+	</bean>
+	<bean id="solveNetworkRelaxation" class="pl.edu.asim.gui.actions.SolveEconetNetwork">
+		<constructor-arg value="Solve network: Relaxation" />
+		<constructor-arg ref="PLAY_Icon" />
+		<constructor-arg value="-r" />
+	</bean>
+	
+	<bean id="wiredNodeCategory" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="name" value="Routers" />
+		<property name="nameLabel" value="Category" />
+		<property name="type" value="ROUTERS" />		
+		<property name="propertyMap"> 
+		<map>
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD_NODE" value-ref="addWiredNode" />
+		</map>
+		</property>  
+	</bean>
+	<bean id="addWiredNode" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add router" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="ROUTER" />
+	</bean>
+
+	<bean id="ROUTER" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="ROUTER" />
+		<property name="name" value="Router" />
+  		<property name="submodelMap"> 
+ 		<map>
+			<entry key="CARDS" value-ref="cardCategory" />	
+			<entry key="IDLE" value-ref="IDLE" />	
+			<entry key="BUSY" value-ref="BUSY" />	
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="description" value-ref="descriptionE" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+	</bean>
+	<bean id="cardCategory" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="name" value="Cards" />
+		<property name="nameLabel" value="Category" />
+		<property name="type" value="CARDS" />		
+		<property name="propertyMap"> 
+		<map>
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD_CARD" value-ref="addCard" />
+		</map>
+		</property>  
+	</bean>
+	<bean id="addCard" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add card" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="CARD" />
+	</bean>
+
+	<bean id="CARD" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="CARD" />
+		<property name="name" value="Card" />
+  		<property name="submodelMap"> 
+ 		<map>
+<!-- 			<entry key="PORTS" value-ref="portCategory" />	 -->
+			<entry key="IDLE" value-ref="IDLE" />	
+			<entry key="BUSY" value-ref="BUSY" />	
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="description" value-ref="descriptionE" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+	</bean>
+	<bean id="portCategory" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="name" value="Ports" />
+		<property name="nameLabel" value="Category" />
+		<property name="type" value="PORTS" />		
+		<property name="propertyMap"> 
+		<map>
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD_PORT" value-ref="addPort" />
+		</map>
+		</property>  
+	</bean>
+	<bean id="addPort" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add port" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="PORT" />
+	</bean>
+	<bean id="PORT" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="PORT" />
+		<property name="name" value="Port" />
+  		<property name="submodelMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="description" value-ref="descriptionE" />
+			<entry key="IP" value-ref="IP" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+	</bean>
+
+	<bean id="linkCategory" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="name" value="Links" />
+		<property name="nameLabel" value="Category" />
+		<property name="type" value="LINKS" />		
+		<property name="propertyMap"> 
+		<map>
+			<entry key="bidirectional" value-ref="bidirectional" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD_LINK" value-ref="addLink" />
+  		    <entry key="UPDATE" value-ref="updateLinkData" />
+		</map>
+		</property>  
+	</bean>
+	<bean id="addLink" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add link" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="LINK" />
+	</bean>
+	<bean id="LINK" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="LINK" />
+		<property name="name" value="Link" />
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="source" value-ref="source" />
+			<entry key="sink" value-ref="sink" />
+			<entry key="returnLink" value-ref="returnLink" />
+			<entry key="easMatrix" value-ref="easMatrix" />
+			<entry key="description" value-ref="descriptionE" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+	</bean>
+	<bean id="updateLinkData" class="pl.edu.asim.gui.actions.UpdateLinkData">
+		<constructor-arg value="Update link data" />
+		<constructor-arg ref="PLAY_Icon" />
+	</bean>
+
+	<bean id="levelsCategory" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="name" value="EAS levels" />
+		<property name="nameLabel" value="Category" />
+		<property name="type" value="LEVELS" />		
+		<property name="propertyMap"> 
+		<map>
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD_LEVEL" value-ref="addLevel" />
+		</map>
+		</property>  
+	</bean>
+	<bean id="addLevel" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add EAS level" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="EAS" />
+	</bean>
+	
+	<bean id="demandCategory" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="name" value="Demands" />
+		<property name="nameLabel" value="Category" />
+		<property name="type" value="DEMANDS" />		
+		<property name="propertyMap"> 
+		<map>
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD_DEMAND" value-ref="addDemand" />
+  		    <entry key="ADD_DEMAND_MATRIX" value-ref="addDemandMatrix" />
+		</map>
+		</property>  
+	</bean>
+	<bean id="addDemand" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add demand" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="DEMAND" />
+	</bean>
+	<bean id="addDemandMatrix" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add demand matrix" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="DEMAND_MATRIX" />
+	</bean>
+	
+	<bean id="DEMAND" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="DEMAND" />
+		<property name="name" value="Demand" />
+  		<property name="submodelMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="source" value-ref="source" />
+			<entry key="sink" value-ref="sink" />
+			<entry key="volume" value-ref="volume" />
+			<entry key="active" value-ref="activeE" />
+			<entry key="description" value-ref="descriptionE" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+	</bean>
+	
+	<bean id="DEMAND_MATRIX" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="DEMAND_MATRIX" />
+		<property name="name" value="Demand matrix" />
+  		<property name="submodelMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="demandMatrix" value-ref="demandMatrix" />
+			<entry key="active" value-ref="activeE" />
+			<entry key="description" value-ref="descriptionE" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+	</bean>
+	
+	<bean id="overbooking" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="overbooking" />
+		<property name="title" value="Overbooking factor" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="tUnit" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="tUnit" />
+		<property name="title" value="Throughput unit" />
+		<property name="fieldName" value="TEXT_field" />		
+		<property name="defaultValue" value="Mb/s" />
+	</bean>
+	<bean id="pUnit" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="pUnit" />
+		<property name="title" value="Power unit" />
+		<property name="fieldName" value="TEXT_field" />		
+		<property name="defaultValue" value="W" />
+	</bean>
+	<bean id="power" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="power" />
+		<property name="title" value="Power" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="minPower" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="minPower" />
+		<property name="title" value="Minimal power" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="volume" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="volume" />
+		<property name="title" value="Volume" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="bandwidth" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="bandwidth" />
+		<property name="title" value="Bandwidth" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="minBandwidth" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="minBandwidth" />
+		<property name="title" value="Minimal bandwidth" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="descriptionE" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="descriptionE" />
+		<property name="title" value="Description" />
+		<property name="fieldName" value="TEXT_area" />		
+	</bean>
+
+	<bean id="EAS" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="EAS" />
+		<property name="name" value="EAS" />
+  		<property name="submodelMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="description" value-ref="descriptionE" />
+			<entry key="power" value-ref="power" />
+			<entry key="minPower" value-ref="minPower" />
+			<entry key="bandwidth" value-ref="bandwidth" />
+			<entry key="minBandwidth" value-ref="minBandwidth" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+	</bean>
+	<bean id="IDLE" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="IDLE" />
+		<property name="name" value="EAS: idle" />
+  		<property name="submodelMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="description" value-ref="descriptionE" />
+			<entry key="power" value-ref="power" />
+			<entry key="bandwidth" value-ref="bandwidth" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+	</bean>
+	<bean id="BUSY" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="BUSY" />
+		<property name="name" value="EAS: busy" />
+  		<property name="submodelMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="description" value-ref="descriptionE" />
+			<entry key="power" value-ref="power" />
+			<entry key="bandwidth" value-ref="bandwidth" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+	</bean>
+	<bean id="authorE" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="author" />
+		<property name="title" value="Author" />
+		<property name="fieldName" value="TEXT_field" />		
+	</bean>
+	<bean id="IP" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="IP" />
+		<property name="title" value="IP" />
+		<property name="fieldName" value="TEXT_field" />		
+	</bean>
+	<bean id="source" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="source" />
+		<property name="title" value="Source port" />
+		<property name="fieldName" value="TEXT_field" />		
+	</bean>
+	<bean id="sink" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="sink" />
+		<property name="title" value="Sink port" />
+		<property name="fieldName" value="TEXT_field" />		
+	</bean>
+	<bean id="returnLink" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="returnLink" />
+		<property name="title" value="Return link" />
+		<property name="fieldName" value="TEXT_field" />		
+	</bean>
+	<bean id="activeE" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="active" />
+		<property name="title" value="Active" />
+		<property name="defaultValue" value="true" />
+		<property name="fieldName" value="BOOLEAN_field" />		
+	</bean>
+	<bean id="bidirectional" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="bidirectional" />
+		<property name="title" value="Bidirectional links" />
+		<property name="defaultValue" value="false" />
+		<property name="fieldName" value="BOOLEAN_field" />		
+	</bean>
+	<bean id="demandMatrix" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="demandMatrix" />
+		<property name="title" value="Traffic matrix" />
+		<property name="fieldName" value="MATRIX_field" />		
+	</bean>
+	<bean id="easMatrix" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="easMatrix" />
+		<property name="title" value="[EAS_Id Power Bandwidth];" />
+		<property name="fieldName" value="MATRIX_field" />		
+	</bean>
+</beans>

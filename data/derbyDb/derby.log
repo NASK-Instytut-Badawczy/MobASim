@@ -1,0 +1,16 @@
+----------------------------------------------------------------
+Fri Apr 10 11:29:27 CEST 2015:
+ Uruchamianie wersji The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077) systemu Derby: instancja a816c00e-014c-a2a9-9fb8-00006f48dd10
+w katalogu bazy danych E:\ASIM_HG\data\derbyDb\ASimDB  sun.misc.Launcher$AppClassLoader@6e0be858 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_25-b18
+user.dir=E:\ASIM_HG\bin
+derby.system.home=../data/derbyDB
+Uruchomiono program ³aduj¹cy klasê bazy danych - derby.database.classpath=''
+----------------------------------------------------------------
+Fri Apr 10 11:33:20 CEST 2015: Shutting down Derby engine
+----------------------------------------------------------------
+Fri Apr 10 11:33:20 CEST 2015:
+Wy³¹czanie instancji a816c00e-014c-a2a9-9fb8-00006f48dd10
+----------------------------------------------------------------

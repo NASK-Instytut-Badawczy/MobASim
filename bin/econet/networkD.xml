@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:graph="http://www.springframework.org/schema/data/graph"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:osgi="http://www.springframework.org/schema/osgi" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/data/graph http://www.springframework.org/schema/data/graph/datagraph-1.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.1.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+
+	<bean id="networkD" class="pl.edu.econet.Network">
+		<property name="overbooking" value="0.75"/>
+		<property name="routers">
+			<list>
+ 				<ref bean="routerD1" />
+ 				<ref bean="routerD2" />
+ 				<ref bean="routerD3" />
+ 				<ref bean="routerD4" />
+ 				<ref bean="routerD5" />
+ 				<ref bean="routerD6" />
+			</list>
+		</property>
+		<property name="links">
+			<list>
+ 				<ref bean="linkD1" />
+ 				<ref bean="linkD2" />
+ 				<ref bean="linkD3" />
+ 				<ref bean="linkD4" />
+ 				<ref bean="linkD5" />
+ 				<ref bean="linkD6" />
+ 				<ref bean="linkD7" />
+ 				<ref bean="linkD8" />
+ 				<ref bean="linkD9" />
+ 				<ref bean="linkD10" />
+ 				<ref bean="linkD1b" />
+ 				<ref bean="linkD2b" />
+ 				<ref bean="linkD3b" />
+ 				<ref bean="linkD4b" />
+ 				<ref bean="linkD5b" />
+ 				<ref bean="linkD6b" />
+ 				<ref bean="linkD7b" />
+ 				<ref bean="linkD8b" />
+ 				<ref bean="linkD9b" />
+ 				<ref bean="linkD10b" />
+			</list>
+		</property>
+		<property name="demands">
+			<list>
+ 				<ref bean="demandD1" />
+ 				<ref bean="demandD2" />
+ 				<ref bean="demandD3" />
+ 				<ref bean="demandD4" />
+ 				<ref bean="demandD5" />
+ 				<ref bean="demandD6" />
+ 				<ref bean="demandD7" /> 
+			</list>
+		</property>
+	</bean>
+
+<!-- routers -->
+	<bean id="routerD1" class="pl.edu.econet.equipment.Router" scope="prototype">
+		<property name="id" value="D1"></property>
+		<property name="idle" ref="router_idle"></property>
+		<property name="busy" ref="router_busy"></property>
+		<property name="cards">
+			<list>
+ 				<ref bean="card2" />
+			</list>
+		</property>
+	</bean>
+	<bean id="routerD2" class="pl.edu.econet.equipment.Router" scope="prototype">
+		<property name="id" value="D2"></property>
+		<property name="idle" ref="router_idle"></property>
+		<property name="busy" ref="router_busy"></property>
+		<property name="cards">
+			<list>
+ 				<ref bean="card2" />
+			</list>
+		</property>
+	</bean>
+	<bean id="routerD3" class="pl.edu.econet.equipment.Router" scope="prototype">
+		<property name="id" value="D3"></property>
+		<property name="idle" ref="router_idle"></property>
+		<property name="busy" ref="router_busy"></property>
+		<property name="cards">
+			<list>
+ 				<ref bean="card1" />
+ 				<ref bean="card2" />
+			</list>
+		</property>
+	</bean>
+	<bean id="routerD4" class="pl.edu.econet.equipment.Router" scope="prototype">
+		<property name="id" value="D4"></property>
+		<property name="idle" ref="router_idle"></property>
+		<property name="busy" ref="router_busy"></property>
+		<property name="cards">
+			<list>
+ 				<ref bean="card1" />
+ 				<ref bean="card2" />
+			</list>
+		</property>
+	</bean>
+	<bean id="routerD5" class="pl.edu.econet.equipment.Router" scope="prototype">
+		<property name="id" value="D5"></property>
+		<property name="idle" ref="router_idle"></property>
+		<property name="busy" ref="router_busy"></property>
+		<property name="cards">
+			<list>
+ 				<ref bean="card1" />
+ 				<ref bean="card2" />
+			</list>
+		</property>
+	</bean>
+	<bean id="routerD6" class="pl.edu.econet.equipment.Router" scope="prototype">
+		<property name="id" value="D6"></property>
+		<property name="idle" ref="router_idle"></property>
+		<property name="busy" ref="router_busy"></property>
+		<property name="cards">
+			<list>
+ 				<ref bean="card1" />
+ 				<ref bean="card2" />
+			</list>
+		</property>
+	</bean>
+
+<!-- cards -->
+	<bean id="card1" class="pl.edu.econet.equipment.Card" scope="prototype">
+		<property name="id" value="1"></property>
+		<property name="idle" ref="card_idle"></property>
+		<property name="busy" ref="card_busy"></property>
+	</bean>
+	<bean id="card2" class="pl.edu.econet.equipment.Card" scope="prototype">
+		<property name="id" value="2"></property>
+		<property name="idle" ref="card_idle"></property>
+		<property name="busy" ref="card_busy"></property>
+	</bean>
+	
+<!-- links -->
+	
+	<bean id="linkD1" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D1D2"></property>
+		<property name="source" value="D1/2"></property>
+		<property name="sink" value="D2/2"></property>
+		<property name="returnLink" ref="linkD1b"></property>		
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD1b" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D2D1"></property>
+		<property name="source" value="D2/2"></property>
+		<property name="sink" value="D1/2"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD2" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D1D3"></property>
+		<property name="source" value="D1/2"></property>
+		<property name="sink" value="D3/1"></property>
+		<property name="returnLink" ref="linkD2b"></property>		
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD2b" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D3D1"></property>
+		<property name="sink" value="D1/2"></property>
+		<property name="source" value="D3/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD3" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D1D4"></property>
+		<property name="source" value="D1/2"></property>
+		<property name="sink" value="D4/1"></property>
+		<property name="returnLink" ref="linkD3b"></property>		
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD3b" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D4D1"></property>
+		<property name="source" value="D4/1"></property>
+		<property name="sink" value="D1/2"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD4" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D2D4"></property>
+		<property name="source" value="D2/2"></property>
+		<property name="sink" value="D4/1"></property>
+		<property name="returnLink" ref="linkD4b"></property>		
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD4b" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D4D2"></property>
+		<property name="sink" value="D2/2"></property>
+		<property name="source" value="D4/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD5" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D2D3"></property>
+		<property name="source" value="D2/2"></property>
+		<property name="sink" value="D3/1"></property>
+		<property name="returnLink" ref="linkD5b"></property>		
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD5b" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D3D2"></property>
+		<property name="sink" value="D2/2"></property>
+		<property name="source" value="D3/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD6" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D3D4"></property>
+		<property name="source" value="D3/2"></property>
+		<property name="sink" value="D4/2"></property>
+		<property name="returnLink" ref="linkD6b"></property>		
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD6b" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D4D3"></property>
+		<property name="sink" value="D3/2"></property>
+		<property name="source" value="D4/2"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD7" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D3D5"></property>
+		<property name="source" value="D3/2"></property>
+		<property name="sink" value="D5/1"></property>
+		<property name="returnLink" ref="linkD7b"></property>		
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD7b" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D5D3"></property>
+		<property name="sink" value="D3/2"></property>
+		<property name="source" value="D5/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD8" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D3D6"></property>
+		<property name="source" value="D3/2"></property>
+		<property name="sink" value="D6/1"></property>
+		<property name="returnLink" ref="linkD8b"></property>		
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD8b" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D6D3"></property>
+		<property name="sink" value="D3/2"></property>
+		<property name="source" value="D6/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD9" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D4D5"></property>
+		<property name="source" value="D4/2"></property>
+		<property name="sink" value="D5/1"></property>
+		<property name="returnLink" ref="linkD9b"></property>		
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD9b" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D5D4"></property>
+		<property name="sink" value="D4/2"></property>
+		<property name="source" value="D5/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD10" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D4D6"></property>
+		<property name="source" value="D4/2"></property>
+		<property name="sink" value="D6/1"></property>
+		<property name="returnLink" ref="linkD10b"></property>		
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="linkD10b" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="D6D4"></property>
+		<property name="sink" value="D4/2"></property>
+		<property name="source" value="D6/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+
+<!-- demands -->
+	<bean id="demandD1" class="pl.edu.econet.demand.Demand" scope="prototype">
+		<property name="id" value="dD1"></property>
+		<property name="source" value="D1"></property>
+		<property name="sink" value="D6"></property>
+		<property name="volume" value="100"></property>
+	</bean>
+	<bean id="demandD2" class="pl.edu.econet.demand.Demand" scope="prototype">
+		<property name="id" value="dD2"></property>
+		<property name="source" value="D1"></property>
+		<property name="sink" value="D2"></property>
+		<property name="volume" value="100"></property>
+	</bean>
+	<bean id="demandD3" class="pl.edu.econet.demand.Demand" scope="prototype">
+		<property name="id" value="dD3"></property>
+		<property name="source" value="D1"></property>
+		<property name="sink" value="D6"></property>
+		<property name="volume" value="100"></property>
+	</bean>
+	<bean id="demandD4" class="pl.edu.econet.demand.Demand" scope="prototype">
+		<property name="id" value="dD4"></property>
+		<property name="source" value="D1"></property>
+		<property name="sink" value="D5"></property>
+		<property name="volume" value="100"></property>
+	</bean>
+	<bean id="demandD5" class="pl.edu.econet.demand.Demand" scope="prototype">
+		<property name="id" value="dD5"></property>
+		<property name="source" value="D2"></property>
+		<property name="sink" value="D6"></property>
+		<property name="volume" value="100"></property>
+	</bean>
+	<bean id="demandD6" class="pl.edu.econet.demand.Demand" scope="prototype">
+		<property name="id" value="dD6"></property>
+		<property name="source" value="D2"></property>
+		<property name="sink" value="D6"></property>
+		<property name="volume" value="100"></property>
+	</bean>
+	<bean id="demandD7" class="pl.edu.econet.demand.Demand" scope="prototype">
+		<property name="id" value="dD7"></property>
+		<property name="source" value="D2"></property>
+		<property name="sink" value="D5"></property>
+		<property name="volume" value="100"></property>
+	</bean>
+
+
+</beans>

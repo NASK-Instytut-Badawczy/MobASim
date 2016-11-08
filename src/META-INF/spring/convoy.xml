@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<bean id="addConvoy" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add simulator of type: Convoy" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="CONVOY" />
+	</bean>
+
+	<bean id="CONVOY" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="CONVOY" />
+		<property name="name" value="Convoy" />
+  		<property name="submodelMap"> 
+ 		<map>
+			<entry key="VEHICLES" value-ref="vehiclesCategory" />	
+			<entry key="OBSTACLES" value-ref="obstacleCategory" />
+			<entry key="PATHLOSS" value-ref="PATHLOSS" />
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="RUN" value-ref="runSimulator" />
+  		    <entry key="ANIM" value-ref="showAnimation" />
+  		    <entry key="Separator" value-ref="separator" />
+  		    <entry key="UPDATE_FIELD" value-ref="updateField" />
+  		    <entry key="Separator" value-ref="separator" />
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="description" value-ref="description" />
+			<entry key="cell_size" value-ref="cell_size" />
+			<entry key="dt" value-ref="dt" />
+			<entry key="time" value-ref="time" />
+			<entry key="scale" value-ref="scale" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+	</bean>
+
+	<bean id="vehiclesCategory" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="name" value="Pojazdy" />
+		<property name="nameLabel" value="Category name" />
+		<property name="type" value="VEHICLES" />		
+		<property name="propertyMap"> 
+		<map>
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD_VEHICLE" value-ref="addVehicle" />
+		</map>
+		</property>  
+	</bean>
+
+	<bean id="addVehicle" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add vehicle" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="VEHICLE" />
+	</bean>
+
+	<bean id="VEHICLE" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="VEHICLE" />
+		<property name="name" value="Vehicle" />
+  		<property name="submodelMap"> 
+ 		<map>
+			<entry key="GOALS" value-ref="goalCategory" />	
+  		    <entry key="WPAN_CARD" value-ref="WPAN_CARD" />
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="active" value-ref="active" />
+			<entry key="convoyMatrix" value-ref="convoyMatrix" />
+			<entry key="description" value-ref="description" />
+			<entry key="v_max" value-ref="v_max" />
+			<entry key="v_min" value-ref="v_min" />
+			<entry key="range_of_view" value-ref="range_of_view" />
+			<entry key="braking_distance" value-ref="braking_distance" />			
+			<entry key="side" value-ref="side" />
+			<entry key="buffer" value-ref="buffer" />
+  			<entry key="precision" value-ref="precision" />
+			<entry key="c_x" value-ref="c_x" />
+			<entry key="c_y" value-ref="c_y" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+	</bean>
+
+
+</beans>

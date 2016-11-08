@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="UNDO_button" class="javax.swing.JButton" scope="prototype">
+		<property name="name" value="UNDO" />
+		<property name="icon" ref="UNDO_Icon" />
+		<property name="toolTipText" value="undo" />
+		<property name="preferredSize" ref="buttonDimension" />
+	</bean>	
+	<bean id="OPEN_button" class="javax.swing.JButton" scope="prototype">
+		<property name="name" value="OPEN" />
+		<property name="icon" ref="OPEN_Icon" />
+		<property name="toolTipText" value="open" />
+		<property name="preferredSize" ref="buttonDimension" />
+	</bean>	
+	<bean id="CONFIRM_button" class="javax.swing.JButton" scope="prototype">
+		<property name="name" value="CONFIRM" />
+		<property name="icon" ref="CONFIRM_Icon" />
+		<property name="toolTipText" value="confirm" />
+		<property name="preferredSize" ref="buttonDimension" />
+	</bean>	
+	<bean id="DUPLICATE_button" class="javax.swing.JButton" scope="prototype">
+		<property name="name" value="DUPLICATE" />
+		<property name="icon" ref="DUPLICATE_Icon" />
+		<property name="toolTipText" value="duplicate" />
+		<property name="preferredSize" ref="buttonDimension" />
+	</bean>	
+	<bean id="COMPILE_button" class="javax.swing.JButton" scope="prototype">
+		<property name="name" value="COMPILE" />
+		<property name="icon" ref="COMPILE_Icon" />
+		<property name="toolTipText" value="compile" />
+		<property name="preferredSize" ref="buttonDimension" />
+	</bean>	
+	<bean id="ADD_button" class="javax.swing.JButton" scope="prototype">
+		<property name="name" value="ADD" />
+		<property name="icon" ref="ADD_Icon" />
+		<property name="toolTipText" value="add element" />
+		<property name="preferredSize" ref="buttonDimension" />
+	</bean>	
+	<bean id="PAUSE_button" class="javax.swing.JButton" scope="prototype">
+		<property name="name" value="ADD" />
+		<property name="icon" ref="PAUSE_Icon" />
+		<property name="toolTipText" value="compile" />
+		<property name="preferredSize" ref="buttonDimension" />
+	</bean>	
+	<bean id="SAVE_button" class="javax.swing.JButton" scope="prototype">
+		<property name="name" value="ADD" />
+		<property name="icon" ref="SAVE_Icon" />
+		<property name="toolTipText" value="save" />
+		<property name="preferredSize" ref="buttonDimension" />
+	</bean>	
+	<bean id="STOP_button" class="javax.swing.JButton" scope="prototype">
+		<property name="name" value="ADD" />
+		<property name="icon" ref="STOP_Icon" />
+		<property name="toolTipText" value="compile" />
+		<property name="preferredSize" ref="buttonDimension" />
+	</bean>	
+	<bean id="DEL_button" class="javax.swing.JButton" scope="prototype">
+		<property name="name" value="DEL" />
+		<property name="icon" ref="DEL_Icon" />
+		<property name="toolTipText" value="remove element" />
+		<property name="preferredSize" ref="buttonDimension" />
+	</bean>	
+	<bean id="NEXT_button" class="javax.swing.JButton" scope="prototype">
+		<property name="name" value="NEXT" />
+		<property name="icon" ref="NEXT_Icon" />
+		<property name="toolTipText" value="compile" />
+		<property name="preferredSize" ref="buttonDimension" />
+	</bean>	
+	<bean id="PREVIOUS_button" class="javax.swing.JButton" scope="prototype">
+		<property name="name" value="PREVIOUS" />
+		<property name="icon" ref="PREVIOUS_Icon" />
+		<property name="toolTipText" value="compile" />
+		<property name="preferredSize" ref="buttonDimension" />
+	</bean>	
+	<bean id="REFRESH_button" class="javax.swing.JButton" scope="prototype">
+		<property name="name" value="REFRESH" />
+		<property name="icon" ref="REFRESH_Icon" />
+		<property name="toolTipText" value="refresh" />
+		<property name="preferredSize" ref="buttonDimension" />
+	</bean>	
+	<bean id="PLAY_button" class="javax.swing.JButton" scope="prototype">
+		<property name="name" value="PLAY" />
+		<property name="icon" ref="PLAY_Icon" />
+		<property name="toolTipText" value="refresh" />
+		<property name="preferredSize" ref="buttonDimension" />
+	</bean>	
+	
+	<bean id="UNDO_Icon" class="javax.swing.ImageIcon">
+		<constructor-arg value="../data/images/rotate.png" />
+	</bean>
+	<bean id="OPEN_Icon" class="javax.swing.ImageIcon">
+		<constructor-arg value="../data/images/fileopen.png" />
+	</bean>
+	<bean id="CONFIRM_Icon" class="javax.swing.ImageIcon">
+		<constructor-arg value="../data/images/confirm.gif" />
+	</bean>
+	<bean id="DUPLICATE_Icon" class="javax.swing.ImageIcon">
+		<constructor-arg value="../data/images/down.png" />
+	</bean>
+	<bean id="CANCEL_Icon" class="javax.swing.ImageIcon">
+		<constructor-arg value="../data/images/button_cancel.png" />
+	</bean>
+	<bean id="CLEAR_Icon" class="javax.swing.ImageIcon">
+		<constructor-arg value="../data/images/db_remove.png" />
+	</bean>
+	<bean id="OK_Icon" class="javax.swing.ImageIcon">
+		<constructor-arg value="../data/images/button_ok.png" />
+	</bean>
+	<bean id="PLAY_Icon" class="javax.swing.ImageIcon">
+		<constructor-arg value="../data/images/player_play.png" />
+	</bean>
+	<bean id="REFRESH_Icon" class="javax.swing.ImageIcon">
+		<constructor-arg value="../data/images/reload.png" />
+	</bean>
+	<bean id="PREVIOUS_Icon" class="javax.swing.ImageIcon">
+		<constructor-arg value="../data/images/previous.png" />
+	</bean>
+	<bean id="NEXT_Icon" class="javax.swing.ImageIcon">
+		<constructor-arg value="../data/images/next.png" />
+	</bean>
+	<bean id="DEL_Icon" class="javax.swing.ImageIcon">
+		<constructor-arg value="../data/images/edit_remove.png" />
+	</bean>
+	<bean id="STOP_Icon" class="javax.swing.ImageIcon">
+		<constructor-arg value="../data/images/player_stop.png" />
+	</bean>
+	<bean id="SAVE_Icon" class="javax.swing.ImageIcon">
+		<constructor-arg value="../data/images/fileexport.png" />
+	</bean>
+	<bean id="PAUSE_Icon" class="javax.swing.ImageIcon">
+		<constructor-arg value="../data/images/player_pause.png" />
+	</bean>
+	<bean id="ADD_Icon" class="javax.swing.ImageIcon">
+		<constructor-arg value="../data/images/edit_add.png" />
+	</bean>
+	<bean id="COMPILE_Icon" class="javax.swing.ImageIcon">
+		<constructor-arg value="../data/images/runprog.png" />
+	</bean>
+	
+	<bean id="TEXT_field" class="pl.edu.asim.gui.fields.TextField" scope="prototype">
+		<property name="preferredSize" ref="textFieldDimension" />
+	</bean>
+	<bean id="BOOLEAN_field" class="pl.edu.asim.gui.fields.CheckboxField" scope="prototype">
+		<property name="preferredSize" ref="textFieldDimension" />
+	</bean>
+	<bean id="MATRIX_field" class="pl.edu.asim.gui.fields.MatrixField" scope="prototype">
+		<property name="preferredSize" ref="matrixFieldDimension" />
+	</bean>
+	<bean id="DOUBLE_field" class="pl.edu.asim.gui.fields.DoubleField" scope="prototype">
+		<property name="preferredSize" ref="textFieldDimension" />
+	</bean>
+	<bean id="INTEGER_field" class="pl.edu.asim.gui.fields.IntegerField" scope="prototype">
+		<property name="preferredSize" ref="textFieldDimension" />
+	</bean>
+	<bean id="TEXT_area" class="pl.edu.asim.gui.fields.TextArea" scope="prototype">
+		<property name="preferredSize" ref="textAreaDimension" />
+	</bean>
+	<bean id="TEXT_area_label" class="pl.edu.asim.gui.fields.TextArea" scope="prototype">
+		<property name="preferredSize" ref="textAreaLabelDimension" />
+	</bean>
+	<bean id="XML_EDITOR_field" class="pl.edu.asim.gui.fields.XMLEditorField" scope="prototype">
+		<property name="preferredSize" ref="xmlEditorDimension" />
+	</bean>
+	<bean id="SVG_EDITOR_field" class="pl.edu.asim.gui.fields.SVGEditorField" scope="prototype">
+		<property name="preferredSize" ref="xmlEditorDimension" />
+		<property name="extensions" value="gif, png, jpg, jpeg, svg ..." />
+		<property name="defaultExportDirectory" value="./results/svg_model" />
+	</bean>
+	<bean id="DIRECTORY_field" class="pl.edu.asim.gui.fields.DirectoryField" scope="prototype">
+		<property name="preferredSize" ref="textFieldDimension" />
+	</bean>
+	<bean id="SVG_FILE_field" class="pl.edu.asim.gui.fields.FileField" scope="prototype">
+		<property name="preferredSize" ref="textFieldDimension" />
+		<property name="extensions" value="*.svg ..." />
+	</bean>
+	<bean id="PICTURE_field" class="pl.edu.asim.gui.fields.FileField" scope="prototype">
+		<property name="preferredSize" ref="textFieldDimension" />
+		<property name="extensions" value="*.gif,*.png,*.jpg, *.svg ..." />
+	</bean>
+	<bean id="COLOR_field" class="pl.edu.asim.gui.fields.ColorField" scope="prototype">
+		<property name="preferredSize" ref="textFieldDimension" />
+	</bean>
+	<bean id="SIDE_field" class="pl.edu.asim.gui.fields.ListField" scope="prototype">
+		<property name="preferredSize" ref="textFieldDimension" />
+		<property name="title" value="PFM: side" />
+		<property name="values"> 
+ 		<map>
+  		    <entry key="left" value="left" />
+  		    <entry key="right" value="right" />
+  		    <entry key="direct" value="direct" />
+ 		    <entry key="adaptive" value="adaptive" />
+		</map>
+		</property>  
+	</bean>
+	<bean id="GOAL_field" class="pl.edu.asim.gui.fields.ListField" scope="prototype">
+		<property name="preferredSize" ref="textFieldDimension" />
+		<property name="title" value="Type of interaction" />
+		<property name="values"> 
+ 		<map>
+  		    <entry key="neutral" value="neutral" />
+  		    <entry key="cooperative" value="cooperative" />
+  		    <entry key="noncooperative" value="noncooperative" />
+		</map>
+		</property>  
+	</bean>
+	<bean id="VISIBILITY_field" class="pl.edu.asim.gui.fields.ListField" scope="prototype">
+		<property name="preferredSize" ref="textFieldDimension" />
+		<property name="title" value="SVG: visibility" />
+		<property name="values">
+ 		<map>
+  		    <entry key="visible" value="visible" />
+  		    <entry key="hidden" value="hidden" />
+  		    <entry key="collapse" value="collapse" />
+  		    <entry key="inherit" value="inherit" />
+		</map>
+		</property>  
+	</bean>
+	<bean id="PT_field" class="pl.edu.asim.gui.fields.ListField" scope="prototype">
+		<property name="preferredSize" ref="textFieldDimension" />
+		<property name="title" value="Power level Pt[dBm]" />
+		<property name="values"> 
+ 		<map>
+  		    <entry key="0" value="0" />
+  		    <entry key="-5" value="-5" />
+  		    <entry key="-10" value="-10" />
+  		    <entry key="-15" value="-15" />
+  		    <entry key="-25" value="-25" />
+		</map>
+		</property>  
+	</bean>
+	<bean id="LIST_field" class="pl.edu.asim.gui.fields.ListField" scope="prototype">
+		<property name="preferredSize" ref="textFieldDimension" />
+		<property name="title" value="Test list" />
+		<property name="values"> 
+ 		<map>
+  		    <entry key="test_1" value="Test 1" />
+  		    <entry key="test_2" value="Test 2" />
+  		    <entry key="test_3" value="Test 3" />
+  		    <entry key="test_4" value="Test 4" />
+		</map>
+		</property>  
+	</bean>
+
+	<bean id="buttonDimension" class="java.awt.Dimension">
+		<constructor-arg value="30" />
+		<constructor-arg value="30" />
+	</bean>
+	<bean id="textFieldDimension" class="java.awt.Dimension">
+		<constructor-arg value="230" />
+		<constructor-arg value="25" />
+	</bean>
+	<bean id="textAreaDimension" class="java.awt.Dimension">
+		<constructor-arg value="330" />
+		<constructor-arg value="125" />
+	</bean>
+	<bean id="textAreaLabelDimension" class="java.awt.Dimension">
+		<constructor-arg value="330" />
+		<constructor-arg value="50" />
+	</bean>
+	<bean id="matrixFieldDimension" class="java.awt.Dimension">
+		<constructor-arg value="330" />
+		<constructor-arg value="150" />
+	</bean>
+	<bean id="xmlEditorDimension" class="java.awt.Dimension">
+		<constructor-arg value="330" />
+		<constructor-arg value="125" />
+	</bean>
+	<bean id="svgFieldDimension" class="java.awt.Dimension">
+		<constructor-arg value="530" />
+		<constructor-arg value="625" />
+	</bean>
+	<bean id="labelDimension" class="java.awt.Dimension">
+		<constructor-arg value="170" />
+		<constructor-arg value="25" />
+	</bean>
+
+	<!-- Default elements -->	
+	
+	<bean id="name" class="pl.edu.asim.gui.NameAttribute">
+		<property name="name" value="name" />
+		<property name="defaultValue" value="" />
+		<property name="required" value="true" />
+		<property name="title" value="Name" />
+		<property name="fieldName" value="TEXT_field" />		
+	</bean>
+	<bean id="id" class="pl.edu.asim.gui.IdAttribute">
+		<property name="name" value="id" />
+		<property name="defaultValue" value="" />
+		<property name="required" value="true" />
+		<property name="title" value="ID" />
+		<property name="fieldName" value="TEXT_field" />		
+	</bean>
+	<bean id="type" class="pl.edu.asim.gui.TypeAttribute">
+		<property name="name" value="type" />
+		<property name="defaultValue" value="" />
+		<property name="required" value="true" />
+		<property name="title" value="Type" />
+		<property name="fieldName" value="TEXT_field" />		
+	</bean>
+
+</beans>

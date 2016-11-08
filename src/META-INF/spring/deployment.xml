@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<bean id="TRIANGULAR_GRID" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="TRIANGULAR_GRID" />
+		<property name="name" value="Triangular grid" />
+  		<property name="submodelMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="active" value-ref="active" />
+			<entry key="stage" value-ref="stage" />
+			<entry key="stage_end" value-ref="stage_end" />
+			<entry key="active_start" value-ref="active_start" />
+			<entry key="active_stop" value-ref="active_stop" />
+			<entry key="description" value-ref="description" />
+			<entry key="grid_obstacles" value-ref="grid_obstacles" />
+			<entry key="c_x" value-ref="c_x" />
+			<entry key="c_y" value-ref="c_y" />
+			<entry key="accuracy_x" value-ref="accuracy_x" />
+			<entry key="accuracy_y" value-ref="accuracy_y" />
+			<entry key="d" value-ref="d" />
+			<entry key="range" value-ref="range" />
+			<entry key="e" value-ref="e" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+	</bean>
+
+	<bean id="RANDOM_GRID" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="RANDOM_GRID" />
+		<property name="name" value="Random grid" />
+  		<property name="submodelMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="active" value-ref="active" />
+			<entry key="stage" value-ref="stage" />
+			<entry key="stage_end" value-ref="stage_end" />
+			<entry key="active_start" value-ref="active_start" />
+			<entry key="active_stop" value-ref="active_stop" />
+			<entry key="description" value-ref="description" />
+			<entry key="grid_obstacles" value-ref="grid_obstacles" />
+			<entry key="accuracy_x" value-ref="accuracy_x" />
+			<entry key="accuracy_y" value-ref="accuracy_y" />
+			<entry key="d" value-ref="d" />
+			<entry key="range" value-ref="range" />
+			<entry key="e" value-ref="e" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+	</bean>
+
+	<bean id="ROI" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="ROI" />
+		<property name="name" value="Monitored area" />
+  		<property name="submodelMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="base_station_name" value-ref="base_station_name" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+	</bean>
+	<bean id="base_station_name" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="base_station_name" />
+		<property name="title" value="Base station name" />
+		<property name="fieldName" value="TEXT_field" />		
+	</bean>
+
+	<bean id="SELFORGANIZE_GRID" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="SELFORGANIZE_GRID" />
+		<property name="name" value="Self-organization" />
+  		<property name="submodelMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="teamMatrix" value-ref="teamMatrix" />
+			<entry key="accuracy_x" value-ref="accuracy_x" />
+			<entry key="accuracy_y" value-ref="accuracy_y" />
+			<entry key="active" value-ref="active" />
+			<entry key="stage" value-ref="stage" />
+			<entry key="stage_end" value-ref="stage_end" />
+			<entry key="e_degree" value-ref="e_degree" />
+			<entry key="active_start" value-ref="active_start" />
+			<entry key="active_stop" value-ref="active_stop" />
+			<entry key="description" value-ref="description" />
+		</map>
+		</property>
+	</bean>
+
+	<bean id="teamMatrix" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="teamMatrix" />
+		<property name="title" value="Vehicles team matrix" />
+		<property name="fieldName" value="MATRIX_field" />
+		<property name="description" value="Node name, Distance, Weight, Impact range" />
+	</bean>
+
+	<bean id="addTriangularGrid" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add triangular grid" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="TRIANGULAR_GRID" />
+	</bean>
+	<bean id="addRandomGrid" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add random grid" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="RANDOM_GRID" />
+	</bean>
+	<bean id="addSelforganizeGrid" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add self-organize grid" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="SELFORGANIZE_GRID" />
+	</bean>
+	<bean id="e_degree" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="e_degree" />
+		<property name="title" value="Edge degree weight" />
+		<property name="defaultValue" value="10" />
+		<property name="fieldName" value="BOOLEAN_field" />		
+	</bean>
+
+	
+</beans>

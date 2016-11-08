@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Tue Nov 08 12:31:20 CET 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): instance a816c00e-0158-43b4-edfa-0000320189a8 
+on database directory C:\Users\mateuszkr\Documents\projects\export_version\data\derbyDb\ASimDB  with class loader sun.misc.Launcher$AppClassLoader@18b4aac2 
+Loaded from file:/C:/Users/mateuszkr/Documents/projects/export_version/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_101-b13
+user.dir=C:\Users\mateuszkr\Documents\projects\export_version\bin
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

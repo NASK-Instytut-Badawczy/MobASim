@@ -1,0 +1,879 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="networkMM" class="pl.edu.econet.Network">
+		<property name="overbooking" value="0.75"/>
+		<property name="routers">
+			<list>
+ 				<ref bean="host1" />
+ 				<ref bean="host2" />
+ 				<ref bean="host3" />
+ 				<ref bean="host4" />
+ 				<ref bean="host5" />
+ 				<ref bean="LSR1" />
+ 				<ref bean="LSR2" />
+ 				<ref bean="LSR3" />
+ 				<ref bean="LSR4" />
+ 				<ref bean="LSR5" />
+ 				<ref bean="LSR6" />
+ 				<ref bean="LSR7" />
+			</list>
+		</property>
+		<property name="links">
+			<list>
+ 				<ref bean="link_host1_LSR1" />
+ 				<ref bean="link_LSR1_host1" />
+ 				<ref bean="link_host2_LSR1" />
+ 				<ref bean="link_LSR1_host2" />
+ 				<ref bean="link_host5_LSR1" />
+ 				<ref bean="link_LSR1_host5" />
+
+ 				<ref bean="link_LSR2_LSR1" />
+ 				<ref bean="link_LSR1_LSR2" />
+ 				<ref bean="link_LSR3_LSR1" />
+ 				<ref bean="link_LSR1_LSR3" />
+
+ 				<ref bean="link_LSR3_LSR7" />
+ 				<ref bean="link_LSR7_LSR3" />
+ 				<ref bean="link_LSR3_LSR4" /> 
+ 				<ref bean="link_LSR4_LSR3" />
+
+ 				<ref bean="link_LSR2_LSR6" />
+ 				<ref bean="link_LSR6_LSR2" />
+ 				<ref bean="link_LSR2_LSR4" />
+ 				<ref bean="link_LSR4_LSR2" />
+
+ 				<ref bean="link_LSR5_LSR4" />
+ 				<ref bean="link_LSR4_LSR5" />
+ 				<ref bean="link_LSR5_LSR7" />
+ 				<ref bean="link_LSR7_LSR5" />
+ 				<ref bean="link_LSR5_LSR6" />
+ 				<ref bean="link_LSR6_LSR5" />
+
+ 				<ref bean="link_host3_LSR5" />
+ 				<ref bean="link_LSR5_host3" />
+ 				<ref bean="link_host4_LSR5" />
+ 				<ref bean="link_LSR5_host4" />
+
+			</list>
+		</property>
+		<property name="demands">
+			<list>
+ 				<ref bean="demand1" />
+ 				<ref bean="demand2" />
+ 				<ref bean="demand3" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="networkMM2" class="pl.edu.econet.Network">
+		<property name="overbooking" value="0.75"/>
+		<property name="routers">
+			<list>
+ 				<ref bean="host1" />
+ 				<ref bean="host2" />
+ 				<ref bean="host3" />
+ 				<ref bean="host4" />
+ 				<ref bean="host5" />
+ 				<ref bean="LSR1" />
+ 				<ref bean="LSR2" />
+ 				<ref bean="LSR3" />
+ 				<ref bean="LSR4" />
+ 				<ref bean="LSR5" />
+ 				<ref bean="LSR6" />
+ 				<ref bean="LSR7" />
+			</list>
+		</property>
+		<property name="links">
+			<list>
+ 				<ref bean="link_host1_LSR1" />
+ 				<ref bean="link_LSR1_host1" />
+ 				<ref bean="link_host2_LSR1" />
+ 				<ref bean="link_LSR1_host2" />
+ 				<ref bean="link_host5_LSR1" />
+ 				<ref bean="link_LSR1_host5" />
+
+ 				<ref bean="link_LSR2_LSR1" />
+ 				<ref bean="link_LSR1_LSR2" />
+ 				<ref bean="link_LSR3_LSR1" />
+ 				<ref bean="link_LSR1_LSR3" />
+
+ 				<ref bean="link_LSR3_LSR7" />
+ 				<ref bean="link_LSR7_LSR3" />
+ 				<ref bean="link_LSR3_LSR4" />
+ 				<ref bean="link_LSR4_LSR3" />
+
+ 				<ref bean="link_LSR2_LSR6" />
+ 				<ref bean="link_LSR6_LSR2" />
+ 				<ref bean="link_LSR2_LSR4" />
+ 				<ref bean="link_LSR4_LSR2" />
+
+ 				<ref bean="link_LSR5_LSR4" />
+ 				<ref bean="link_LSR4_LSR5" />
+ 				<ref bean="link_LSR5_LSR7" />
+ 				<ref bean="link_LSR7_LSR5" />
+ 				<ref bean="link_LSR5_LSR6" />
+ 				<ref bean="link_LSR6_LSR5" />
+
+ 				<ref bean="link_host3_LSR5" />
+ 				<ref bean="link_LSR5_host3" />
+ 				<ref bean="link_host4_LSR5" />
+ 				<ref bean="link_LSR5_host4" />
+
+			</list>
+		</property>
+		<property name="demands">
+			<list>
+ 				<ref bean="demand1" />
+ 				<ref bean="demand2" />
+ 				<ref bean="demand3" />
+ 				<ref bean="demand4" />
+ 				<ref bean="demand5" />
+ 				<ref bean="demand6" />
+			</list>
+		</property>
+	</bean>
+
+		<bean id="networkMM3" class="pl.edu.econet.Network">
+		<property name="overbooking" value="0.75"/>
+		<property name="routers">
+			<list>
+ 				<ref bean="host1" />
+ 				<ref bean="host2" />
+ 				<ref bean="host3" />
+ 				<ref bean="host4" />
+ 				<ref bean="host5" />
+ 				<ref bean="LSR1" />
+ 				<ref bean="LSR2" />
+ 				<ref bean="LSR3" />
+ 				<ref bean="LSR4" />
+ 				<ref bean="LSR5" />
+ 				<ref bean="LSR6" />
+ 				<ref bean="LSR7" />
+			</list>
+		</property>
+		<property name="links">
+			<list>
+ 				<ref bean="link_host1_LSR1" />
+ 				<ref bean="link_LSR1_host1" />
+ 				<ref bean="link_host2_LSR1" />
+ 				<ref bean="link_LSR1_host2" />
+ 				<ref bean="link_host5_LSR1" />
+ 				<ref bean="link_LSR1_host5" />
+
+ 				<ref bean="link_LSR2_LSR1" />
+ 				<ref bean="link_LSR1_LSR2" />
+ 				<ref bean="link_LSR3_LSR1" />
+ 				<ref bean="link_LSR1_LSR3" />
+
+ 				<ref bean="link_LSR3_LSR7" />
+ 				<ref bean="link_LSR7_LSR3" />
+ 				<ref bean="link_LSR3_LSR4" />
+ 				<ref bean="link_LSR4_LSR3" />
+
+ 				<ref bean="link_LSR2_LSR6" />
+ 				<ref bean="link_LSR6_LSR2" />
+ 				<ref bean="link_LSR2_LSR4" />
+ 				<ref bean="link_LSR4_LSR2" />
+
+ 				<ref bean="link_LSR5_LSR4" />
+ 				<ref bean="link_LSR4_LSR5" />
+ 				<ref bean="link_LSR5_LSR7" />
+ 				<ref bean="link_LSR7_LSR5" />
+ 				<ref bean="link_LSR5_LSR6" />
+ 				<ref bean="link_LSR6_LSR5" />
+
+ 				<ref bean="link_host3_LSR5" />
+ 				<ref bean="link_LSR5_host3" />
+ 				<ref bean="link_host4_LSR5" />
+ 				<ref bean="link_LSR5_host4" />
+
+			</list>
+		</property>
+		<property name="demands">
+			<list>
+ 				<ref bean="demand1" />
+ 				<ref bean="demand2" />
+ 				<ref bean="demand3" />
+ 				<ref bean="demand4" />
+ 				<ref bean="demand5" />
+ 				<ref bean="demand6" />
+				<ref bean="demand7" />
+  				<ref bean="demand8" /> 
+ 				<ref bean="demand9" /> 
+			</list>
+		</property>
+	</bean>
+
+<!-- cards -->
+
+	<bean id="card1" class="pl.edu.econet.equipment.Card" scope="prototype">
+		<property name="id" value="1"></property>
+		<property name="idle" ref="card_idle"></property>
+		<property name="busy" ref="card_busy"></property>
+	</bean>
+
+<!-- hosts -->
+
+	<bean id="host1" class="pl.edu.econet.equipment.Router" scope="prototype">
+		<property name="id" value="host1"></property>
+		<property name="idle" ref="router_idle"></property>
+		<property name="busy" ref="router_busy"></property>
+		<property name="cards">
+			<list>
+ 				<ref bean="card1" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="host2" class="pl.edu.econet.equipment.Router" scope="prototype">
+		<property name="id" value="host2"></property>
+		<property name="idle" ref="router_idle"></property>
+		<property name="busy" ref="router_busy"></property>
+		<property name="cards">
+			<list>
+ 				<ref bean="card1" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="host3" class="pl.edu.econet.equipment.Router" scope="prototype">
+		<property name="id" value="host3"></property>
+		<property name="idle" ref="router_idle"></property>
+		<property name="busy" ref="router_busy"></property>
+		<property name="cards">
+			<list>
+ 				<ref bean="card1" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="host4" class="pl.edu.econet.equipment.Router" scope="prototype">
+		<property name="id" value="host4"></property>
+		<property name="idle" ref="router_idle"></property>
+		<property name="busy" ref="router_busy"></property>
+		<property name="cards">
+			<list>
+ 				<ref bean="card1" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="host5" class="pl.edu.econet.equipment.Router" scope="prototype">
+		<property name="id" value="host5"></property>
+		<property name="idle" ref="router_idle"></property>
+		<property name="busy" ref="router_busy"></property>
+		<property name="cards">
+			<list>
+ 				<ref bean="card1" />
+			</list>
+		</property>
+	</bean>
+
+
+<!-- routers -->
+
+	<bean id="LSR1" class="pl.edu.econet.equipment.Router" scope="prototype">
+		<property name="id" value="LSR1"></property>
+		<property name="idle" ref="router_idle"></property>
+		<property name="busy" ref="router_busy"></property>
+		<property name="cards">
+			<list>
+ 				<ref bean="card1" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="LSR2" class="pl.edu.econet.equipment.Router" scope="prototype">
+		<property name="id" value="LSR2"></property>
+		<property name="idle" ref="router_idle"></property>
+		<property name="busy" ref="router_busy"></property>
+		<property name="cards">
+			<list>
+ 				<ref bean="card1" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="LSR3" class="pl.edu.econet.equipment.Router" scope="prototype">
+		<property name="id" value="LSR3"></property>
+		<property name="idle" ref="router_idle"></property>
+		<property name="busy" ref="router_busy"></property>
+		<property name="cards">
+			<list>
+ 				<ref bean="card1" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="LSR4" class="pl.edu.econet.equipment.Router" scope="prototype">
+		<property name="id" value="LSR4"></property>
+		<property name="idle" ref="router_idle"></property>
+		<property name="busy" ref="router_busy"></property>
+		<property name="cards">
+			<list>
+ 				<ref bean="card1" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="LSR5" class="pl.edu.econet.equipment.Router" scope="prototype">
+		<property name="id" value="LSR5"></property>
+		<property name="idle" ref="router_idle"></property>
+		<property name="busy" ref="router_busy"></property>
+		<property name="cards">
+			<list>
+ 				<ref bean="card1" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="LSR6" class="pl.edu.econet.equipment.Router" scope="prototype">
+		<property name="id" value="LSR6"></property>
+		<property name="idle" ref="router_idle"></property>
+		<property name="busy" ref="router_busy"></property>
+		<property name="cards">
+			<list>
+ 				<ref bean="card1" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="LSR7" class="pl.edu.econet.equipment.Router" scope="prototype">
+		<property name="id" value="LSR7"></property>
+		<property name="idle" ref="router_idle"></property>
+		<property name="busy" ref="router_busy"></property>
+		<property name="cards">
+			<list>
+ 				<ref bean="card1" />
+			</list>
+		</property>
+	</bean>
+<!-- links -->
+
+	<bean id="link_LSR1_LSR2" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR1LSR2"></property>
+		<property name="source" value="LSR1/1"></property>
+		<property name="sink" value="LSR2/1"></property>
+		<property name="returnLink" ref="link_LSR2_LSR1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="link_LSR2_LSR1" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR2LSR1"></property>
+		<property name="source" value="LSR2/1"></property>
+		<property name="sink" value="LSR1/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="link_LSR1_LSR3" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR1LSR3"></property>
+		<property name="source" value="LSR1/1"></property>
+		<property name="sink" value="LSR3/1"></property>
+		<property name="returnLink" ref="link_LSR3_LSR1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="link_LSR3_LSR1" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR3LSR1"></property>
+		<property name="source" value="LSR3/1"></property>
+		<property name="sink" value="LSR1/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="link_host1_LSR1" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="host1LSR1"></property>
+		<property name="source" value="host1/1"></property>
+		<property name="sink" value="LSR1/1"></property>
+		<property name="returnLink" ref="link_LSR1_host1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="link_host5_LSR1" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="host5LSR1"></property>
+		<property name="source" value="host5/1"></property>
+		<property name="sink" value="LSR1/1"></property>
+		<property name="returnLink" ref="link_LSR1_host5"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="link_host2_LSR1" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="host2LSR1"></property>
+		<property name="source" value="host2/1"></property>
+		<property name="sink" value="LSR1/1"></property>
+		<property name="returnLink" ref="link_LSR1_host2"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="link_LSR1_host1" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR1host1"></property>
+		<property name="source" value="LSR1/1"></property>
+		<property name="sink" value="host1/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="link_LSR1_host5" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR1host5"></property>
+		<property name="source" value="LSR1/1"></property>
+		<property name="sink" value="host5/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="link_LSR1_host2" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR1host2"></property>
+		<property name="source" value="LSR1/1"></property>
+		<property name="sink" value="host2/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="link_LSR3_LSR4" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR3LSR4"></property>
+		<property name="source" value="LSR3/1"></property>
+		<property name="sink" value="LSR4/1"></property>
+		<property name="returnLink" ref="link_LSR4_LSR3"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="link_LSR4_LSR3" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR4LSR3"></property>
+		<property name="source" value="LSR4/1"></property>
+		<property name="sink" value="LSR3/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="link_LSR3_LSR7" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR3LSR7"></property>
+		<property name="source" value="LSR3/1"></property>
+		<property name="sink" value="LSR7/1"></property>
+		<property name="returnLink" ref="link_LSR7_LSR3"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="link_LSR7_LSR3" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR7LSR3"></property>
+		<property name="source" value="LSR7/1"></property>
+		<property name="sink" value="LSR3/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="link_LSR2_LSR4" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR2LSR4"></property>
+		<property name="source" value="LSR2/1"></property>
+		<property name="sink" value="LSR4/1"></property>
+		<property name="returnLink" ref="link_LSR4_LSR2"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="link_LSR4_LSR2" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR4LSR2"></property>
+		<property name="source" value="LSR4/1"></property>
+		<property name="sink" value="LSR2/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="link_LSR2_LSR6" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR2LSR6"></property>
+		<property name="source" value="LSR2/1"></property>
+		<property name="sink" value="LSR6/1"></property>
+		<property name="returnLink" ref="link_LSR6_LSR2"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="link_LSR6_LSR2" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR6LSR2"></property>
+		<property name="source" value="LSR6/1"></property>
+		<property name="sink" value="LSR2/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="link_LSR5_LSR6" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR5LSR6"></property>
+		<property name="source" value="LSR5/1"></property>
+		<property name="sink" value="LSR6/1"></property>
+		<property name="returnLink" ref="link_LSR6_LSR5"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="link_LSR6_LSR5" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR6LSR5"></property>
+		<property name="source" value="LSR6/1"></property>
+		<property name="sink" value="LSR5/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="link_LSR5_LSR4" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR5LSR4"></property>
+		<property name="source" value="LSR5/1"></property>
+		<property name="sink" value="LSR4/1"></property>
+		<property name="returnLink" ref="link_LSR4_LSR5"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="link_LSR4_LSR5" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR4LSR5"></property>
+		<property name="source" value="LSR4/1"></property>
+		<property name="sink" value="LSR5/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="link_LSR5_LSR7" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR5LSR7"></property>
+		<property name="source" value="LSR5/1"></property>
+		<property name="sink" value="LSR7/1"></property>
+		<property name="returnLink" ref="link_LSR7_LSR5"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="link_LSR7_LSR5" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR7LSR5"></property>
+		<property name="source" value="LSR7/1"></property>
+		<property name="sink" value="LSR5/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="link_LSR5_host3" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR5host3"></property>
+		<property name="source" value="LSR5/1"></property>
+		<property name="sink" value="host3/1"></property>
+		<property name="returnLink" ref="link_host3_LSR5"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="link_host3_LSR5" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="host3LSR5"></property>
+		<property name="source" value="host3/1"></property>
+		<property name="sink" value="LSR5/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="link_LSR5_host4" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="LSR5host4"></property>
+		<property name="source" value="LSR5/1"></property>
+		<property name="sink" value="host4/1"></property>
+		<property name="returnLink" ref="link_host4_LSR5"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+	<bean id="link_host4_LSR5" class="pl.edu.econet.topology.Link" scope="prototype">
+		<property name="id" value="host4LSR5"></property>
+		<property name="source" value="host4/1"></property>
+		<property name="sink" value="LSR5/1"></property>
+		<property name="levels">
+			<list>
+ 				<ref bean="link_level_1" />
+ 				<ref bean="link_level_2" />
+ 				<ref bean="link_level_3" />
+ 				<ref bean="link_level_4" />
+ 				<ref bean="link_level_5" />
+			</list>
+		</property>
+	</bean>
+
+<!-- EAS -->
+	<bean id="router_idle" class="pl.edu.econet.energy.EAS" scope="prototype">
+		<property name="power" value="0"></property>
+	</bean>
+	<bean id="router_busy" class="pl.edu.econet.energy.EAS" scope="prototype">
+		<property name="power" value="1900"></property>
+	</bean>	
+	<bean id="card_idle" class="pl.edu.econet.energy.EAS" scope="prototype">
+		<property name="power" value="0"></property>
+	</bean>
+	<bean id="card_busy" class="pl.edu.econet.energy.EAS" scope="prototype">
+		<property name="power" value="90"></property>
+	</bean>	
+	
+	<bean id="link_level_1" class="pl.edu.econet.energy.EAS" scope="prototype">
+		<property name="id" value="1"></property>
+		<property name="power" value="16"></property>
+		<property name="bandwidth" value="200"></property>
+		<property name="minBandwidth" value="0"></property>
+		<property name="minPower" value="0"></property>
+	</bean>	
+	<bean id="link_level_2" class="pl.edu.econet.energy.EAS" scope="prototype">
+		<property name="id" value="2"></property>
+		<property name="power" value="32"></property>
+		<property name="bandwidth" value="400"></property>
+		<property name="minBandwidth" value="200"></property>
+		<property name="minPower" value="16"></property>
+	</bean>	
+	<bean id="link_level_3" class="pl.edu.econet.energy.EAS" scope="prototype">
+		<property name="id" value="3"></property>
+		<property name="power" value="48"></property>
+		<property name="bandwidth" value="600"></property>
+		<property name="minBandwidth" value="400"></property>
+		<property name="minPower" value="32"></property>
+	</bean>	
+	<bean id="link_level_4" class="pl.edu.econet.energy.EAS" scope="prototype">
+		<property name="id" value="4"></property>
+		<property name="power" value="64"></property>
+		<property name="bandwidth" value="800"></property>
+		<property name="minBandwidth" value="600"></property>
+		<property name="minPower" value="48"></property>
+	</bean>	
+	<bean id="link_level_5" class="pl.edu.econet.energy.EAS" scope="prototype">
+		<property name="id" value="5"></property>
+		<property name="power" value="80"></property>
+		<property name="bandwidth" value="1000"></property>
+		<property name="minBandwidth" value="800"></property>
+		<property name="minPower" value="64"></property>
+	</bean>	
+
+<!-- demands -->
+	<bean id="demand1" class="pl.edu.econet.demand.Demand" scope="prototype">
+		<property name="id" value="d1"></property>
+		<property name="source" value="host1"></property>
+		<property name="sink" value="host3"></property>
+		<property name="volume" value="400"></property>
+	</bean>
+	<bean id="demand2" class="pl.edu.econet.demand.Demand" scope="prototype">
+		<property name="id" value="d2"></property>
+		<property name="source" value="host2"></property>
+		<property name="sink" value="host3"></property>
+		<property name="volume" value="400"></property>
+	</bean>
+	<bean id="demand3" class="pl.edu.econet.demand.Demand" scope="prototype">
+		<property name="id" value="d3"></property>
+		<property name="source" value="host5"></property>
+		<property name="sink" value="host3"></property>
+		<property name="volume" value="400"></property>
+	</bean>
+	<bean id="demand4" class="pl.edu.econet.demand.Demand" scope="prototype">
+		<property name="id" value="d4"></property>
+		<property name="source" value="host1"></property>
+		<property name="sink" value="host3"></property>
+		<property name="volume" value="100"></property>
+	</bean>
+	<bean id="demand5" class="pl.edu.econet.demand.Demand" scope="prototype">
+		<property name="id" value="d5"></property>
+		<property name="source" value="host3"></property>
+		<property name="sink" value="host5"></property>
+		<property name="volume" value="100"></property>
+	</bean>
+	<bean id="demand6" class="pl.edu.econet.demand.Demand" scope="prototype">
+		<property name="id" value="d6"></property>
+		<property name="source" value="host3"></property>
+		<property name="sink" value="host1"></property>
+		<property name="volume" value="100"></property>
+	</bean>
+	<bean id="demand7" class="pl.edu.econet.demand.Demand" scope="prototype">
+		<property name="id" value="d7"></property>
+		<property name="source" value="host1"></property>
+		<property name="sink" value="host4"></property>
+		<property name="volume" value="20"></property>
+	</bean>
+	<bean id="demand8" class="pl.edu.econet.demand.Demand" scope="prototype">
+		<property name="id" value="d8"></property>
+		<property name="source" value="host2"></property>
+		<property name="sink" value="host5"></property>
+		<property name="volume" value="20"></property>
+	</bean>
+	<bean id="demand9" class="pl.edu.econet.demand.Demand" scope="prototype">
+		<property name="id" value="d9"></property>
+		<property name="source" value="host5"></property>
+		<property name="sink" value="host2"></property>
+		<property name="volume" value="20"></property>
+	</bean>
+</beans>

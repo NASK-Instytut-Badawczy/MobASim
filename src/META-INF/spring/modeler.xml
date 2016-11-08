@@ -1,0 +1,1041 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:svg="http://www.w3.org/2000/svg"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- MobASim Modeler -->
+
+	<bean id="settings" class="pl.edu.asim.gui.Settings">
+ 		<property name="defaultModelerName" value="MobASim Modeler" />
+		<property name="defaultModelerType" value="MODELER"/>
+<!-- 	<property name="defaultModelerName" value="Econet Modeler" />
+		<property name="defaultModelerType" value="SOLVER"/>  -->
+	</bean>
+
+
+	<!-- MobASim Simulator ================================================================================-->
+	<bean id="SIMULATOR" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="SIMULATOR" />
+		<property name="name" value="Simulator" />
+  		<property name="submodelMap"> 
+ 		<map>
+			<entry key="PATHLOSS" value-ref="PATHLOSS" />
+			<entry key="ROI" value-ref="ROI" />
+			<entry key="OBSTACLES" value-ref="obstacleCategory" />
+			<entry key="GOALS" value-ref="globalGoalCategory" />	
+			<entry key="NODES" value-ref="nodeCategory" />	
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="RUN" value-ref="runSimulator" />
+  		    <entry key="RESULTS" value-ref="showResults" />
+  		    <entry key="ANIM" value-ref="showAnimation" />
+  		    <entry key="Separator" value-ref="separator" />
+  		    <entry key="UPDATE_FIELD" value-ref="updateField" />
+  		    <entry key="Separator" value-ref="separator" />
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="description" value-ref="description" />
+			<entry key="cell_size" value-ref="cell_size" />
+			<entry key="dt" value-ref="dt" />
+			<entry key="time" value-ref="time" />
+			<entry key="scale" value-ref="scale" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+			<entry key="field_name" value-ref="field_name" />
+			<entry key="field_value" value-ref="field_value" />
+		</map>
+		</property>
+	</bean>
+
+
+	<bean id="PATHLOSS" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="PATHLOSS" />
+		<property name="name" value="Radio propagation model" />
+  		<property name="submodelMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="defaultN" value-ref="defaultN" />
+			<entry key="defaultS" value-ref="defaultS" />
+			<entry key="description" value-ref="description" />
+			<entry key="matrix_n" value-ref="matrix_n" />
+			<entry key="matrix_s" value-ref="matrix_s" />
+		</map>
+		</property>
+	</bean>
+
+	<bean id="nodeCategory" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="name" value="Network nodes" />
+		<property name="nameLabel" value="Category name" />
+		<property name="type" value="NODES" />		
+		<property name="propertyMap"> 
+		<map>
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+			<entry key="field_name" value-ref="field_name" />
+			<entry key="field_value" value-ref="field_value" />
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD_NODES" value-ref="addNodes" />
+  		    <entry key="ADD_NODE" value-ref="addNode" />
+  		    <entry key="ADD_STATION" value-ref="addStation" />
+  		    <entry key="Separator" value-ref="separator" />
+  		    <entry key="UPDATE_FIELD" value-ref="updateField" />
+  		    <entry key="SORT_LIST" value-ref="sortList" />
+		</map>
+		</property>  
+	</bean>
+
+	<bean id="TEAM" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="name" value="Team" />
+		<property name="type" value="TEAM" />		
+  		<property name="submodelMap"> 
+ 		<map>
+			<entry key="GOALS" value-ref="globalGoalCategory" />	
+			<entry key="NODES" value-ref="nodeCategory" />	
+		</map>
+		</property>  
+ 		<property name="propertyMap"> 
+		<map>
+			<entry key="enabled" value-ref="enabled" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+			<entry key="field_name" value-ref="field_name" />
+			<entry key="field_value" value-ref="field_value" />
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD_NODE" value-ref="addNode" />
+  		    <entry key="ADD_STATION" value-ref="addStation" />
+  		    <entry key="Separator" value-ref="separator" />
+  		    <entry key="UPDATE_FIELD" value-ref="updateField" />
+  		    <entry key="SORT_LIST" value-ref="sortList" />
+  		    <entry key="Separator" value-ref="separator" />
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+	</bean>
+
+	<bean id="addNode" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add mobile node" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="NODE" />
+	</bean>
+
+	<bean id="addNodes" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add group of nodes" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="TEAM" />
+	</bean>
+
+	<bean id="NODE" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="NODE" />
+		<property name="name" value="Network node" />
+  		<property name="submodelMap"> 
+ 		<map>
+			<entry key="GOALS" value-ref="goalCategory" />	
+  		    <entry key="WPAN_CARD" value-ref="WPAN_CARD" />	
+  		    <entry key="EVENTS" value-ref="EVENTS" />	
+  		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="enabled" value-ref="enabled" />
+			<entry key="v_max" value-ref="v_max" />
+			<entry key="v_min" value-ref="v_min" />
+			<entry key="range_of_view" value-ref="range_of_view" />
+			<entry key="braking_distance" value-ref="braking_distance" />			
+			<entry key="side" value-ref="side" />
+			<entry key="buffer" value-ref="buffer" />
+			<entry key="sensing_range" value-ref="sensing_range" />
+<!-- 			<entry key="precision" value-ref="precision" /> -->  
+			<entry key="c_x" value-ref="c_x" />
+			<entry key="c_y" value-ref="c_y" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+<!-- 			<entry key="d" value-ref="d" />
+			<entry key="e" value-ref="e" /> -->
+<!-- 			<entry key="range" value-ref="range" />  -->
+<!-- 			<entry key="ring" value-ref="ring" /> -->  
+			<entry key="description" value-ref="description" />
+		</map>
+		</property>
+	</bean>
+
+	<bean id="WPAN_CARD" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="WPAN_CARD" />
+		<property name="name" value="Module cc2420" />
+  		<property name="submodelMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="pt" value-ref="pt" />
+			<entry key="ps" value-ref="ps" />
+			<entry key="pcca" value-ref="pcca" />
+			<entry key="description" value-ref="description" />
+		</map>
+		</property>
+	</bean>
+
+	<bean id="EVENTS" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="EVENTS" />
+		<property name="name" value="Events" />
+  		<property name="submodelMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="eventsMatrix" value-ref="eventsMatrix" />
+			<entry key="description" value-ref="description" />
+		</map>
+		</property>
+	</bean>
+
+	<bean id="addStation" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add stationary device" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="BASE_STATION" />
+	</bean>
+
+	<bean id="BASE_STATION" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="BASE_STATION" />
+		<property name="name" value="Base station" />
+  		<property name="submodelMap"> 
+ 		<map>
+			<entry key="GOALS" value-ref="goalCategory" />	
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="active" value-ref="active" />
+			<entry key="description" value-ref="description" />
+			<entry key="d" value-ref="d" />
+			<entry key="e" value-ref="e" />
+			<entry key="range" value-ref="range" />
+			<entry key="c_x" value-ref="c_x" />
+			<entry key="c_y" value-ref="c_y" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+	</bean>
+
+	<bean id="globalGoalCategory" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="name" value="Global goals" />
+		<property name="nameLabel" value="Category name" />
+		<property name="type" value="GOALS" />		
+		<property name="propertyMap"> 
+		<map>
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+			<entry key="field_name" value-ref="field_name" />
+			<entry key="field_value" value-ref="field_value" />
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD_GOAL" value-ref="addGoal" />
+  		    <entry key="ADD_TRIANGULAR_GRID" value-ref="addTriangularGrid" />
+  		    <entry key="ADD_RANDOM_GRID" value-ref="addRandomGrid" />
+  		    <entry key="ADD_SELFORGANIZE_GRID" value-ref="addSelforganizeGrid" />
+  		    <entry key="Separator" value-ref="separator" />
+  		    <entry key="UPDATE_FIELD" value-ref="updateField" />
+  		    <entry key="SORT_LIST" value-ref="sortList" />
+		</map>
+		</property>  
+	</bean>
+
+	<bean id="goalCategory" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="name" value="Local goals" />
+		<property name="nameLabel" value="Category name" />
+		<property name="type" value="GOALS" />		
+		<property name="propertyMap"> 
+		<map>
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+			<entry key="field_name" value-ref="field_name" />
+			<entry key="field_value" value-ref="field_value" />
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD_GOAL" value-ref="addGoal" />
+  		    <entry key="Separator" value-ref="separator" />
+  		    <entry key="UPDATE_FIELD" value-ref="updateField" />
+  		    <entry key="SORT_LIST" value-ref="sortList" />
+		</map>
+		</property>  
+	</bean>
+
+	<bean id="addGoal" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add goal" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="GOAL" />
+	</bean>
+	<bean id="GOAL" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="GOAL" />
+		<property name="name" value="Goal" />
+  		<property name="submodelMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="active" value-ref="active" />
+			<entry key="stage" value-ref="stage" />
+			<entry key="stage_end" value-ref="stage_end" />
+			<entry key="active_start" value-ref="active_start" />
+			<entry key="active_stop" value-ref="active_stop" />
+			<entry key="goal_type" value-ref="goal_type" />
+			<entry key="d" value-ref="d" />
+ 			<entry key="precision" value-ref="precision" />
+			<entry key="range" value-ref="range" />
+			<entry key="e" value-ref="e" />
+			<entry key="accuracy_x" value-ref="accuracy_x" />
+			<entry key="accuracy_y" value-ref="accuracy_y" />
+			<entry key="c_x" value-ref="c_x" />
+			<entry key="c_y" value-ref="c_y" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+			<entry key="description" value-ref="description" />
+		</map>
+		</property>
+	</bean>
+
+
+	<bean id="obstacleCategory" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="name" value="Obstacles" />
+		<property name="nameLabel" value="Category name" />
+		<property name="type" value="OBSTACLES" />		
+		<property name="propertyMap"> 
+		<map>
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+			<entry key="field_name" value-ref="field_name" />
+			<entry key="field_value" value-ref="field_value" />
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD_OBSTACLE" value-ref="addObstacle" />
+  		    <entry key="DEL" value-ref="removeElement" />
+  		    <entry key="UPDATE_FIELD" value-ref="updateField" />
+  		    <entry key="SORT_LIST" value-ref="sortList" />
+		</map>
+		</property>  
+	</bean>
+
+	<bean id="addObstacle" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add obstacle" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="OBSTACLE" />
+	</bean>
+
+	<bean id="OBSTACLE" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="OBSTACLE" />
+		<property name="name" value="Obstacle" />
+  		<property name="submodelMap"> 
+ 		<map>
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="obstacle_active" value-ref="obstacle_active" />
+			<entry key="description" value-ref="description" />
+			<entry key="svg_x" value-ref="svg_x" />
+			<entry key="svg_y" value-ref="svg_y" />
+			<entry key="svg_width" value-ref="svg_width" />
+			<entry key="svg_height" value-ref="svg_height" />
+			<entry key="svg_visibility" value-ref="svg_visibility" />
+			<entry key="svg_editor" value-ref="svg_editor" />
+		</map>
+		</property>
+	</bean>
+
+	<bean id="channelCategory" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="name" value="Communication channels" />
+		<property name="nameLabel" value="Category name" />
+		<property name="type" value="CHANNELS" />		
+		<property name="propertyMap"> 
+		<map>
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD_W" value-ref="addWirelessChannel" />
+  		    <entry key="ADD_V" value-ref="addVisualChannel" />
+		</map>
+		</property>  
+	</bean>
+
+	<bean id="addWirelessChannel" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add channel 802.15.4" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="WIRELESS_CHANNEL" />
+	</bean>
+
+	<bean id="WIRELESS_CHANNEL" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="name" value="Wireless channel" />
+		<property name="nameLabel" value="802.15.4 Wireless channel" />
+		<property name="type" value="WIRELESS_CHANNEL" />
+		<property name="propertyMap"> 
+		<map>
+			<entry key="frequency" value-ref="frequency" />
+			<entry key="channel_index" value-ref="channel_index" />
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+	</bean>
+
+	<bean id="addVisualChannel" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add communication channel by vision" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="VISUAL_CONTACT" />
+	</bean>
+
+	<bean id="VISUAL_CONTACT" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="name" value="Visual contact" />
+		<property name="nameLabel" value="Visual contact" />
+		<property name="type" value="VISUAL_CONTACT" />
+		<property name="propertyMap"> 
+		<map>
+			<entry key="range" value-ref="range" />
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+	</bean>
+
+	<bean id="LOCAL_BUS" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="name" value="Local bus" />
+		<property name="nameLabel" value="Local bus" />
+		<property name="type" value="LOCAL_BUS" />
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+	</bean>
+
+	<bean id="addSimulation" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add simulation" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="SIMULATION" />
+	</bean>
+	<bean id="addNetwork" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add network" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="NETWORK" />
+	</bean>
+	<bean id="addSimulator" class="pl.edu.asim.gui.actions.AddElementAction">
+		<constructor-arg value="Add simulator of type: ad-hoc network formation" />
+		<constructor-arg ref="ADD_Icon" />
+		<property name="type" value="SIMULATOR" />
+	</bean>
+	
+	<bean id="separator" class="pl.edu.asim.gui.actions.SeparatorNullAction" scope="prototype" />
+	<bean id="xmlExportAction" class="pl.edu.asim.gui.actions.XMLExportAction">
+		<constructor-arg value="XML Export" />
+		<constructor-arg ref="SAVE_Icon" />
+	</bean>
+	<bean id="xmlImportAction" class="pl.edu.asim.gui.actions.XMLImportAction">
+		<constructor-arg value="XML Import" />
+		<constructor-arg ref="OPEN_Icon" />
+	</bean>
+	<bean id="modelerExitAction" class="pl.edu.asim.gui.actions.ModelerExitAction">
+		<constructor-arg value="Close application" />
+		<property name="question" value="Close application?" />
+	</bean>
+	<bean id="findElementAction" class="pl.edu.asim.gui.actions.FindAction">
+		<constructor-arg value="Szukaj" />
+		<constructor-arg value=" Give element id: " />
+	</bean>
+	<bean id="memoryMonitor" class="pl.edu.asim.gui.actions.MemoryUsageAction">
+		<constructor-arg value="Memory usage" />
+	</bean>
+	<bean id="removeElement" class="pl.edu.asim.gui.actions.RemoveElementAction">
+		<constructor-arg value="Delete element" />
+		<constructor-arg ref="DEL_Icon" />
+		<property name="question" value="Delete element?" />
+	</bean>
+	<bean id="runSimulator" class="pl.edu.asim.gui.actions.RunSimulatorAction">
+		<constructor-arg value="Run simulation" />
+		<constructor-arg ref="PLAY_Icon" />
+	</bean>
+	<bean id="showAnimation" class="pl.edu.asim.gui.actions.ShowAnimationAction">
+		<constructor-arg value="Show animation" />
+		<constructor-arg ref="PLAY_Icon" />
+	</bean>
+	<bean id="showResults" class="pl.edu.asim.gui.actions.ShowResultsAction">
+		<constructor-arg value="Show result" />
+		<constructor-arg ref="PLAY_Icon" />
+	</bean>
+	<bean id="updateField" class="pl.edu.asim.gui.actions.UpdateAction">
+		<constructor-arg value="Update indicated fields" />
+		<constructor-arg ref="PLAY_Icon" />
+	</bean>
+	<bean id="sortList" class="pl.edu.asim.gui.actions.SortAction">
+		<constructor-arg value="Sort by name" />
+		<constructor-arg ref="PLAY_Icon" />
+	</bean>
+	
+	<bean id="modeler_name" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="modeler_name" />
+		<property name="title" value="Application name" />
+		<property name="fieldName" value="TEXT_field" />		
+		<property name="blocked" value="true" />	
+		<property name="defaultValue" value="MobASim Modeler" />	
+	</bean>
+	<bean id="description" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="description" />
+		<property name="title" value="Description" />
+		<property name="fieldName" value="TEXT_area" />		
+	</bean>
+	<bean id="frequency" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="frequency" />
+		<property name="title" value="Frequency [MHz]" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="scale" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="scale" />
+		<property name="title" value="Scale" />
+		<property name="defaultValue" value="1" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="channel_index" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="channel_index" />
+		<property name="title" value="Channel index" />
+		<property name="fieldName" value="INTEGER_field" />		
+	</bean>
+	<bean id="stage" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="stage" />
+		<property name="title" value="Beginnig stage" />
+		<property name="defaultValue" value="0" />
+		<property name="fieldName" value="INTEGER_field" />		
+	</bean>
+	<bean id="stage_end" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="stage_end" />
+		<property name="title" value="Ending stage" />
+		<property name="defaultValue" value="1" />
+		<property name="fieldName" value="INTEGER_field" />		
+	</bean>
+	<bean id="range" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="range" />
+		<property name="title" value="Goal range" />
+		<property name="defaultValue" value="100" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="sensing_range" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="sensing_range" />
+		<property name="title" value="Sensor range" />
+		<property name="defaultValue" value="100" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="buffer" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="buffer" />
+		<property name="title" value="Min. distance from obstacle" />
+		<property name="defaultValue" value="10" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="precision" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="precision" />
+		<property name="title" value="Location precision" />
+		<property name="defaultValue" value="10" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="matrix" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="matrix" />
+		<property name="title" value="Parameters matrix" />
+		<property name="fieldName" value="MATRIX_field" />		
+	</bean>
+	<bean id="defaultN" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="defaultN" />
+		<property name="title" value="Default parameter N" />
+		<property name="defaultValue" value="2.0" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="defaultS" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="defaultS" />
+		<property name="title" value="Default parameter S" />
+		<property name="defaultValue" value="0.0" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="pt" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="pt" />
+		<property name="title" value="Power level Pt [dBm]" />
+		<property name="defaultValue" value="-10" />
+		<property name="fieldName" value="PT_field" />		
+	</bean>
+	<bean id="ps" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="ps" />
+		<property name="title" value="Power level Ps [dBm]" />
+		<property name="defaultValue" value="-95" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="pcca" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="pcca" />
+		<property name="title" value="Power level P_CCA [dBm]" />
+		<property name="defaultValue" value="-122" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="matrix_n" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="matrix_n" />
+		<property name="title" value="Parametrs matrix n" />
+		<property name="fieldName" value="MATRIX_field" />		
+	</bean>
+	<bean id="matrix_s" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="matrix_s" />
+		<property name="title" value="Parametrs matrix s" />
+		<property name="fieldName" value="MATRIX_field" />		
+	</bean>
+	<bean id="points" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="points" />
+		<property name="title" value="Boundary points matrix P" />
+		<property name="fieldName" value="MATRIX_field" />		
+	</bean>
+	<bean id="convoyMatrix" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="convoyMatrix" />
+		<property name="title" value="Goals matrix" />
+		<property name="fieldName" value="MATRIX_field" />
+		<property name="description" value="Goal name, Distance, Weight, Impact range" />
+	</bean>
+	<bean id="eventsMatrix" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="eventsMatrix" />
+		<property name="title" value="Events matrix" />
+		<property name="fieldName" value="MATRIX_field" />		
+	</bean>
+	<bean id="svg_editor" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="svg_editor" />
+		<property name="title" value="SVG: shapes" />
+		<property name="fieldName" value="SVG_EDITOR_field" />		
+	</bean>
+	<bean id="author" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="author" />
+		<property name="title" value="Application author" />
+		<property name="fieldName" value="TEXT_field" />		
+	</bean>
+	<bean id="svg_x" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="svg_x" />
+		<property name="title" value="SVG: x" />
+		<property name="defaultValue" value="0" />
+		<property name="fieldName" value="INTEGER_field" />		
+	</bean>
+	<bean id="svg_y" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="svg_y" />
+		<property name="defaultValue" value="0" />
+		<property name="title" value="SVG: y" />
+		<property name="fieldName" value="INTEGER_field" />		
+	</bean>
+	<bean id="c_x" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="c_x" />
+		<property name="title" value="c: x" />
+		<property name="defaultValue" value="0" />
+		<property name="fieldName" value="INTEGER_field" />		
+	</bean>
+	<bean id="c_y" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="c_y" />
+		<property name="defaultValue" value="0" />
+		<property name="title" value="c: y" />
+		<property name="fieldName" value="INTEGER_field" />		
+	</bean>
+	<bean id="d" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="d" />
+		<property name="defaultValue" value="1" />
+		<property name="title" value="Expected distance" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="e" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="e" />
+		<property name="defaultValue" value="1" />
+		<property name="title" value="Goal weight" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="v_max" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="v_max" />
+		<property name="defaultValue" value="0" />
+		<property name="title" value="Max. velocity" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="v_min" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="v_min" />
+		<property name="defaultValue" value="0" />
+		<property name="title" value="Min. velocity" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="braking_distance" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="braking_distance" />
+		<property name="defaultValue" value="0" />
+		<property name="title" value="Max. breaking distance" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="range_of_view" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="range_of_view" />
+		<property name="defaultValue" value="0" />
+		<property name="title" value="Vision range" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="dt" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="dt" />
+		<property name="defaultValue" value="1" />
+		<property name="title" value="Time step" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="time" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="time" />
+		<property name="defaultValue" value="100" />
+		<property name="title" value="Time horizont" />
+		<property name="fieldName" value="INTEGER_field" />		
+	</bean>
+	<bean id="svg_width" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="svg_width" />
+		<property name="defaultValue" value="301" />
+		<property name="title" value="SVG: width" />
+		<property name="fieldName" value="INTEGER_field" />		
+	</bean>
+	<bean id="svg_height" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="svg_height" />
+		<property name="defaultValue" value="301" />
+		<property name="title" value="SVG: height" />
+		<property name="fieldName" value="INTEGER_field" />		
+	</bean>
+	<bean id="cell_size" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="cell_size" />
+		<property name="defaultValue" value="100" />
+		<property name="title" value="Cell width" />
+		<property name="fieldName" value="INTEGER_field" />		
+	</bean>
+	<bean id="active_start" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="active_start" />
+		<property name="defaultValue" value="0" />
+		<property name="title" value="Active from" />
+		<property name="fieldName" value="INTEGER_field" />		
+	</bean>
+	<bean id="active_stop" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="active_stop" />
+		<property name="defaultValue" value="200" />
+		<property name="title" value="Active to" />
+		<property name="fieldName" value="INTEGER_field" />		
+	</bean>
+	<bean id="svg_visibility" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="svg_visibility" />
+		<property name="title" value="SVG: visibility" />
+		<property name="defaultValue" value="visible" />
+		<property name="fieldName" value="VISIBILITY_field" />		
+	</bean>
+	<bean id="workspace" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="workspace" />
+		<property name="title" value="Working directory" />
+		<property name="defaultValue" value="./results" />
+		<property name="fieldName" value="DIRECTORY_field" />		
+	</bean>
+	<bean id="svg_model" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="svg_model" />
+		<property name="title" value="Resultant SVG file" />
+		<property name="defaultValue" value="./results/svg_model/simulator.svg" />
+		<property name="fieldName" value="SVG_FILE_field" />		
+	</bean>
+	<bean id="active" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="active" />
+		<property name="title" value="Active" />
+		<property name="defaultValue" value="true" />
+		<property name="fieldName" value="BOOLEAN_field" />		
+	</bean>
+	<bean id="enabled" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="enabled" />
+		<property name="title" value="Active" />
+		<property name="defaultValue" value="true" />
+		<property name="fieldName" value="BOOLEAN_field" />		
+	</bean>
+	<bean id="obstacle_active" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="obstacle_active" />
+		<property name="title" value="Active obstacle" />
+		<property name="defaultValue" value="true" />
+		<property name="fieldName" value="BOOLEAN_field" />		
+	</bean>
+	<bean id="random_location" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="random_location" />
+		<property name="title" value="Random location" />
+		<property name="defaultValue" value="false" />
+		<property name="fieldName" value="BOOLEAN_field" />		
+	</bean>
+	<bean id="grid_location" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="grid_location" />
+		<property name="title" value="Grid location" />
+		<property name="defaultValue" value="false" />
+		<property name="fieldName" value="BOOLEAN_field" />		
+	</bean>
+	<bean id="grid_obstacles" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="grid_obstacles" />
+		<property name="title" value="Known obstacles" />
+		<property name="defaultValue" value="false" />
+		<property name="fieldName" value="BOOLEAN_field" />		
+	</bean>
+	<bean id="side" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="side" />
+		<property name="title" value="Bypassing obstacles" />
+		<property name="defaultValue" value="left" />
+		<property name="fieldName" value="SIDE_field" />		
+	</bean>
+	<bean id="goal_type" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="goal_type" />
+		<property name="title" value="Type of impact" />
+		<property name="defaultValue" value="neutral" />
+		<property name="fieldName" value="GOAL_field" />		
+	</bean>
+	<bean id="field_name" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="field_name" />
+		<property name="title" value="Field name" />
+		<property name="fieldName" value="TEXT_field" />		
+	</bean>
+	<bean id="field_value" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="field_value" />
+		<property name="title" value="New value of field" />
+		<property name="fieldName" value="TEXT_area" />		
+	</bean>
+	<bean id="ring" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="ring" />
+		<property name="title" value="Cluster number" />
+		<property name="defaultValue" value="0" />
+		<property name="fieldName" value="INTEGER_field" />		
+	</bean>
+	<bean id="accuracy_x" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="accuracy_x" />
+		<property name="defaultValue" value="0.0" />
+		<property name="title" value="x coordinate precision" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+	<bean id="accuracy_y" class="pl.edu.asim.gui.Attribute" scope="prototype">
+		<property name="name" value="accuracy_y" />
+		<property name="defaultValue" value="0.0" />
+		<property name="title" value="y coordinate precision" />
+		<property name="fieldName" value="DOUBLE_field" />		
+	</bean>
+
+	<!-- MobASim Simulation ================================================================================-->
+	<bean id="SIMULATION" class="pl.edu.asim.gui.GuiNode" scope="prototype">
+		<property name="type" value="SIMULATION" />
+		<property name="name" value="Symulacja" />
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="DEL" value-ref="removeElement" />
+		</map>
+		</property>  
+		<property name="propertyMap"> 
+		<map>
+			<entry key="description" value-ref="description" />
+		</map>
+		</property>
+	</bean>
+
+	<!-- MobASim Modeler ================================================================================-->
+
+	<bean id="MODELER" class="pl.edu.asim.gui.GuiNode">
+		<property name="name" value="MobASim Modeler" />
+		<property name="nameLabel" value="Application name" />
+		<property name="nameBlocked" value="true" />
+		<property name="type" value="MODELER" />
+		<property name="propertyMap"> 
+		<map>
+			<entry key="author" value-ref="author" />
+			<entry key="description" value-ref="description" />
+			<entry key="workspace" value-ref="workspace" />
+			<entry key="width" value-ref="svg_width" />
+			<entry key="height" value-ref="svg_height" />
+		</map>
+		</property>
+  		<property name="submodelMap"> 
+ 		<map>
+			<entry key="SIMPLE_DEPLOYMENT" value-ref="deploymentCategory" />	 		
+			<entry key="COMPLEX_DEPLOYMENT" value-ref="complexDeploymentCategory" />	
+			<entry key="SIMULATORS" value-ref="simulatorCategory" />	
+			<entry key="CACHE" value-ref="cache" />	
+			<entry key="TESTS" value-ref="tests" />	
+		</map>
+		</property>  
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="Memory" value-ref="memoryMonitor" />
+  		    <entry key="XMLExport" value-ref="xmlExportAction" />
+  		    <entry key="XMLImport" value-ref="xmlImportAction" />
+  		    <entry key="Separator_1" value-ref="separator" />
+  		    <entry key="Exit" value-ref="modelerExitAction" />
+		</map>
+		</property>  
+	</bean>
+
+	<bean id="simulatorCategory" class="pl.edu.asim.gui.GuiNode">
+		<property name="name" value="Simulators" />
+		<property name="nameLabel" value="Category name" />
+		<property name="type" value="SIMULATORS" />		
+		<property name="propertyMap"> 
+		<map>
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD" value-ref="addSimulator" />
+  		    <entry key="ADD_CONVOY" value-ref="addConvoy" />
+		</map>
+		</property>  
+	</bean>
+	<bean id="deploymentCategory" class="pl.edu.asim.gui.GuiNode">
+		<property name="name" value="Network formation" />
+		<property name="nameLabel" value="Nazwa kategorii" />
+		<property name="type" value="SIMPLE_DEPLOYMENT" />		
+		<property name="propertyMap"> 
+		<map>
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD" value-ref="addSimulator" />
+		</map>
+		</property>  
+	</bean>
+	<bean id="complexDeploymentCategory" class="pl.edu.asim.gui.GuiNode">
+		<property name="name" value="Multi phase network formation" />
+		<property name="nameLabel" value="Nazwa kategorii" />
+		<property name="type" value="COMPLEX_DEPLOYMENT" />		
+		<property name="propertyMap"> 
+		<map>
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD" value-ref="addSimulator" />
+		</map>
+		</property>  
+	</bean>
+	<bean id="simulationCategory" class="pl.edu.asim.gui.GuiNode">
+		<property name="name" value="Symulacje" />
+		<property name="nameLabel" value="Nazwa kategorii" />
+		<property name="type" value="SIMULATIONS" />		
+		<property name="propertyMap"> 
+		<map>
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD" value-ref="addSimulation" />
+		</map>
+		</property>  
+	</bean>
+	<bean id="cache" class="pl.edu.asim.gui.GuiNode">
+		<property name="name" value="Bin" />
+		<property name="nameLabel" value="Nazwa kategorii" />
+		<property name="type" value="CACHE" />		
+		<property name="propertyMap"> 
+		<map>
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+		</map>
+		</property>  
+	</bean>
+	<bean id="tests" class="pl.edu.asim.gui.GuiNode">
+		<property name="name" value="Tests" />
+		<property name="nameLabel" value="Category name" />
+		<property name="type" value="TESTS" />		
+		<property name="propertyMap"> 
+		<map>
+		</map>
+		</property>
+		<property name="actionMap"> 
+ 		<map>
+  		    <entry key="ADD" value-ref="addSimulator" />
+  		    <entry key="ADD_CONVOY" value-ref="addConvoy" />
+		</map>
+		</property>  
+	</bean>
+	</beans>

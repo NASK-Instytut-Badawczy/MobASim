@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/osgi"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:amq="http://activemq.apache.org/schema/core"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/osgi
+http://www.springframework.org/schema/osgi/spring-osgi.xsd
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
+
+<!--  <amq:broker id="jms_broker" brokerName="localhost" useJmx="true"
+		persistent="false"> -->
+		<!-- <amq:transportConnectors> <amq:transportConnector name="openwire" 
+			uri="tcp://localhost:9190" /> </amq:transportConnectors> -->
+<!--	</amq:broker>
+-->	
+	<service id="simulatorManagerService" ref="simulatorManager"
+		interface="pl.edu.asim.interfaces.ASimSimulatorInterface" />
+
+	<beans:bean id="simulatorManager" class="pl.edu.asim.sim.ASimSimulatorManager">
+	<!--  	<beans:property name="threadsPool" value="8" />-->
+	<!--  	<beans:property name="connectionFactory" ref="jms_Factory" />-->
+	<!--  <beans:property name="ASim" ref="ASim" /> -->	
+		<beans:property name="marshaller" ref="castorMarshaller" />
+		<beans:property name="unmarshaller" ref="castorMarshaller" />
+		<beans:property name="services"> 
+ 		<beans:map>
+			<beans:entry key="SIMULATOR" value-ref="simulatorService" />
+			<beans:entry key="CONVOY" value-ref="convoyService" />
+		</beans:map>
+		</beans:property>  
+
+	</beans:bean>
+
+	<beans:bean id="simulatorService" class="pl.edu.asim.sim.deployment.DeploymentSimulatorService">
+	</beans:bean>
+	<beans:bean id="convoyService" class="pl.edu.asim.sim.convoy.ConvoySimulatorService">
+	</beans:bean>
+<!--  
+	<beans:bean id="ASim" class="org.apache.activemq.command.ActiveMQTopic">
+		<beans:constructor-arg value="ASimChannel" />
+	</beans:bean>
+	<amq:connectionFactory id="jms_Factory"
+		brokerURL="vm://localhost" userName="" password="" />
+
+	<beans:bean id="pooledJmsConnectionFactory"
+		class="org.apache.activemq.pool.PooledConnectionFactory"
+		destroy-method="stop">
+		<beans:property name="connectionFactory" ref="jms_Factory" />
+	</beans:bean>
+-->
+	<beans:bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller" />
+</beans:beans>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+	<persistence-unit name="eclipseLink" transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>pl.edu.asim.model.ASimDO</class>
+		<class>pl.edu.asim.model.ASimPO</class>
+		<properties>
+			<!--<property name="eclipselink.target-database" value="Derby"/> -->
+			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:derby:../data/derbyDb/ASimDB;create=true;characterEncoding=cp1250" />
+			<property name="javax.persistence.jdbc.user" value="ASIM_MODELER" />
+			<property name="javax.persistence.jdbc.password" value="ASIM" />
+			<property name="eclipselink.weaving" value="false" />
+			<!-- EclipseLink should create the database schema automatically -->
+			<property name="eclipselink.ddl-generation" value="update-tables" />
+			<!--<property name="eclipselink.ddl-generation" value="drop-and-create-tables" 
+				/> -->
+			<property name="eclipselink.ddl-generation.output-mode"
+				value="database" />
+		</properties>
+	</persistence-unit>
+
+	<persistence-unit name="openjpa" transaction-type="RESOURCE_LOCAL">
+		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+		<class>pl.edu.asim.sim.Test</class>
+		<!-- <class>pl.edu.asim.sim.ASimAbstractProperty</class> <class>pl.edu.asim.sim.ASimAbstractElement</class> -->
+		<properties>
+			<property name="openjpa.ConnectionURL"
+				value="jdbc:derby:../data/derbyDb/ASimDB;create=true" />
+			<property name="openjpa.ConnectionDriverName" value="org.apache.derby.jdbc.EmbeddedDriver" />
+			<property name="openjpa.ConnectionUserName" value="ASIM_MODELER" />
+			<property name="openjpa.ConnectionPassword" value="ASIM" />
+			<property name="openjpa.Log" value="DefaultLevel=WARN" />
+			<!--<property name="openjpa.RuntimeUnenhancedClasses" value="supported" 
+				/> -->
+			<property name="openjpa.DynamicEnhancementAgent" value="true" />
+			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
+		</properties>
+	</persistence-unit>
+
+</persistence>

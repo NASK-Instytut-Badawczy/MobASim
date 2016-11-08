@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<project name="ASim" default="jar" basedir="./">
+	<property file="./conf/asim.properties" />
+	<path id="asim.classpath">
+		<pathelement path="../bin" />
+		<fileset dir="${asim.lib.dir}" includes="*.jar" />
+		<fileset dir="./autodeploy" includes="*.jar" />
+		<fileset dir="${asim.classes.dir}" includes="*.class" />
+	</path>
+	<path id="asim.doclib">
+		<pathelement path="../bin" />
+		<fileset dir="./doclib" includes="*.jar" />
+	</path>
+	<target name="javadoc">
+		<javadoc packagenames="pl.edu.asim.*" sourcepath="${asim.src.dir}" destdir="${asim.javadoc.dir}">
+			<classpath refid="asim.classpath" />
+		</javadoc>
+	</target>
+	<target name="pdfjavadoc">
+		<javadoc doclet="com.tarsec.javadoc.pdfdoclet.PDFDoclet" docletpath="doclib/pdfdoclet-1.0.2-all.jar" packagenames="pl.edu.asim.*" additionalparam="-pdf ./asim.pdf -config ./doclib/doclet.properties" private="no" sourcepath="${asim.src.dir}">
+		</javadoc>
+	</target>
+	<target name="pdfjavadoc2">
+		<javadoc packagenames="pl.edu.asim.*" private="no" sourcepath="${asim.src.dir}" destdir="${asim.javadoc.dir}/yWorks">
+			<doclet name="ydoc.doclets.YStandard" path="doclib/ydoc.jar;doclib/resources">
+				<param name="-author" />
+				<param name="-generic" />
+				<param name="-umlautogen" />
+				<param name="-filterpath" value="./doclib/ydoc.jar" />
+				<param name="-filter" value="ydoc.filters.ExcludeFilter" />
+				<param name="-tag" value="y.precondition" />
+				<param name="-tag" value="y.postcondition" />
+				<param name="-tag" value="y.complexity" />
+				<param name="-tag" value="param" />
+				<param name="-tag" value="return" />
+				<param name="-tag" value="see" />
+				<param name="-tag" value="y.uml" />
+			</doclet>
+		</javadoc>
+	</target>
+	<target name="ij">
+		<java classname="org.apache.derby.tools.ij">
+			<classpath refid="asim.classpath" />
+			<sysproperty key="ij.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+			<sysproperty key="ij.database" value="jdbc:derby:${asim.database.dir}/${asim.database.name};create=false;characterEncoding=cp1250" />
+			<sysproperty key="ij.user" value="${asim.database.gui_user}" />
+			<sysproperty key="ij.password" value="${asim.database.password}" />
+		</java>
+	</target>
+	<target name="sysinfo">
+		<java classname="org.apache.derby.tools.sysinfo">
+			<classpath refid="asim.classpath" />
+			<jvmarg line="-Dderby.system.home=${asim.database.dir}" />
+		</java>
+	</target>
+
+	<target name="jar" depends="compile" description="Create jar and MANIFEST.MF">
+
+		<pathconvert property="libs.project" pathsep=" ">
+			<mapper>
+				<chainedmapper>
+					<!-- remove absolute path -->
+					<flattenmapper />
+					<!-- add lib/ prefix -->
+					<globmapper from="*.jar" to="../lib/*.jar" />
+				</chainedmapper>
+			</mapper>
+			<path>
+				<!-- lib.home contains all jar files, in several subdirectories -->
+				<fileset dir="${asim.lib.dir}">
+					<include name="**/*.jar" />
+				</fileset>
+			</path>
+		</pathconvert>
+
+		<!--			<jar destfile="../bin/bundles/pl.edu.asim.service.jar">
+				<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/service/*.class" />
+				<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/service/optim/*.class" />
+				<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/service/mobility/*.class" />
+				<manifest>
+					<attribute name="Built-By" value="${user.name}" />
+					<attribute name="Main-Class" value="pl.edu.asim.service.ASimServiceManager" />
+					<attribute name="Export-Package" value="pl.edu.asim.service" />
+					<attribute name="Bundle-ManifestVersion" value="2" />
+					<attribute name="Bundle-SymbolicName" value="pl.edu.asim.service" />
+					<attribute name="Bundle-Name" value="ASim Data Model" />
+					<attribute name="Import-Package" value="org.osgi.framework" />
+					<attribute name="Bundle-Vendor" value="Apache Felix" />
+					<attribute name="Bundle-Version" value="1.0" />
+					<attribute name="Bundle-Activator" value="pl.edu.asim.service.ASimServiceActivator" />
+				</manifest>
+			</jar> -->
+		<jar destfile="../bin/bundles/pl.edu.asim.sim.jar">
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/sim/*.class" />
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/sim/convoy/*.class" />
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/sim/deployment/*.class" />
+			<fileset dir="${asim.src.dir}" includes="META-INF/spring/simulator.xml" />
+			<fileset dir="${asim.src.dir}" includes="META-INF/spring/network*.xml" />
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/service/*.class" />
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/service/optim/*.class" />
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/service/mobility/*.class" />
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/service/wpan/*.class" />
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/econet/*.class" />
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/econet/topology/*.class" />
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/econet/equipment/*.class" />
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/econet/energy/*.class" />
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/econet/demand/*.class" />
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Main-Class" value="pl.edu.asim.sim.ASimSimulatorManager" />
+				<attribute name="Export-Package" value="pl.edu.asim.sim,pl.edu.asim.sim.proc,pl.edu.econet,pl.edu.econet.energy,pl.edu.econet.demand,pl.edu.econet.equipment,pl.edu.econet.topology" />
+				<attribute name="Import-Package" value="org.springframework.beans.factory.config,org.springframework.beans.propertyeditors,org.osgi.framework,org.springframework.context,org.springframework.osgi.context,org.springframework.osgi.context.support,org.springframework.context.support,org.springframework.jms.core,org.springframework.jms.connection,org.springframework.oxm,org.springframework.oxm.castor,pl.edu.econet,pl.edu.econet.energy,pl.edu.econet.demand,pl.edu.econet.equipment,pl.edu.econet.topology" />
+				<attribute name="Bundle-ManifestVersion" value="2" />
+				<attribute name="Bundle-SymbolicName" value="pl.edu.asim.sim" />
+				<attribute name="Bundle-Name" value="pl.edu.asim.sim" />
+				<attribute name="Bundle-Vendor" value="Apache Felix" />
+				<attribute name="Bundle-Version" value="1.0" />
+				<attribute name="Bundle-Activator" value="pl.edu.asim.sim.ASimSimulatorActivator" />
+			</manifest>
+		</jar>
+		<jar destfile="../bin/bundles/pl.edu.asim.gui.jar">
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/gui/*.class" />
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/gui/actions/*.class" />
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/gui/fields/*.class" />
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/gui/fields/svg/*.class" />
+			<fileset dir="${asim.src.dir}" includes="META-INF/spring/modeler.xml" />
+			<fileset dir="${asim.src.dir}" includes="META-INF/spring/convoy.xml" />
+			<fileset dir="${asim.src.dir}" includes="META-INF/spring/deployment.xml" />
+			<fileset dir="${asim.src.dir}" includes="META-INF/spring/solver.xml" />
+			<fileset dir="${asim.src.dir}" includes="META-INF/spring/gui_fields.xml" />
+			<fileset dir="${asim.src.dir}" includes="META-INF/EMPTY.svg" />
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Main-Class" value="pl.edu.asim.gui.Modeler" />
+				<attribute name="Class-Path" value="${libs.project}" />
+				<attribute name="Export-Package" value="pl.edu.asim.gui" />
+				<attribute name="Import-Package" value="org.springframework.beans.factory.config,org.springframework.beans.propertyeditors,org.osgi.framework,org.springframework.context,org.springframework.osgi.context,org.springframework.osgi.context.support,org.springframework.context.support,org.springframework.jms.core,org.springframework.jms.connection,pl.edu.asim.sim.proc,pl.edu.asim.sim,pl.edu.econet,pl.edu.econet.energy,pl.edu.econet.demand,pl.edu.econet.equipment,pl.edu.econet.topology" />
+				<attribute name="Bundle-ManifestVersion" value="2" />
+				<attribute name="Bundle-SymbolicName" value="pl.edu.asim.gui" />
+				<attribute name="Bundle-Name" value="pl.edu.asim.gui" />
+				<attribute name="Bundle-Vendor" value="Apache Felix" />
+				<attribute name="Bundle-Activator" value="pl.edu.asim.gui.ModelerActivator" />
+				<attribute name="Bundle-Version" value="1.0" />
+			</manifest>
+		</jar>
+
+		<jar destfile="../bin/ASimPlatform.jar">
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/*.class" />
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/interfaces/*.class" />
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/util/*.class" />
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/model/*.class" />
+			<fileset dir="${asim.classes.dir}" includes="/pl/edu/asim/proc/*.class" />
+			<fileset dir="${asim.bin.dir}/resources" includes="log4j.properties" />
+			<fileset dir="${asim.src.dir}" includes="META-INF/persistence.xml" />
+			<fileset dir="${asim.bin.dir}/resources" includes="jaxb.properties" />
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Main-Class" value="pl.edu.asim.ASimPlatform" />
+				<attribute name="Class-Path" value="./bundles/pl.edu.asim.model.jar ${libs.project}" />
+			</manifest>
+		</jar>
+	</target>
+	<target name="compile">
+		<echo message="Compiling the source...">
+		</echo>
+		<mkdir dir="${asim.classes.dir}" />
+		<mkdir dir="${asim.src.dir}" />
+		<javac deprecation="false" includeantruntime="false" debug="true" optimize="false" srcdir="${asim.src.dir}" classpathref="asim.classpath" destdir="${asim.classes.dir}" fork="${javacFork}" encoding="UTF-8">
+			<compilerarg value="-Xlint:unchecked" />
+		</javac>
+	</target>
+
+</project>
